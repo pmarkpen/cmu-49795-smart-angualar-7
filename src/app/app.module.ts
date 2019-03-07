@@ -7,8 +7,9 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectItemComponent } from './shopper/select-item/select-item.component';
-import {MatCardModule} from '@angular/material';
+import {MatCardModule, MatButtonModule} from '@angular/material';
 import { PickStoreItemComponent } from './shopper/select-item/pick-store/pick-store-item/pick-store-item.component';
+import { SelectProductComponent } from './shopper/select-item/select-product/select-product.component';
 
 const appRoutes: Routes = [
   { path: 'shopper/select-item', component: SelectItemComponent },
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
     AppComponent,
     TestComponent,
     SelectItemComponent,
-    PickStoreItemComponent
+    PickStoreItemComponent,
+    SelectProductComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

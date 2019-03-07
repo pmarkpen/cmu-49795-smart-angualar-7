@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import StoreItem from './pick-store/model/store-item';
+import StoreItem from './model/store-item';
+import Product from './model/product';
 
 @Component({
   selector: 'app-select-item',
@@ -9,13 +10,17 @@ import StoreItem from './pick-store/model/store-item';
 export class SelectItemComponent implements OnInit {
   
   storeList: StoreItem[];
-
+  productList: Product[];
   constructor() {
     let temp = new StoreItem();
     temp.storeName = "SafeWay";
     temp.storeDescription = "Cupertino";
 
     this.storeList = [temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp, temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp];
+
+    let productTemp = new Product();
+    productTemp.name = "SET 2 TEA TOWELS";
+    this.productList = [productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp];
    }
 
   ngOnInit() {
