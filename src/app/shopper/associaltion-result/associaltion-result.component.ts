@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import AssociatedProductItem from './model/associated-product-item';
 
 @Component({
   selector: 'app-associaltion-result',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./associaltion-result.component.scss']
 })
 export class AssocialtionResultComponent implements OnInit {
+  productList:AssociatedProductItem[];
+  constructor() { 
+    let temp = new AssociatedProductItem();
+    temp.name = "Egg";
+    temp.support = 80;
 
-  constructor() { }
+    this.productList = [temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp,temp];
+  }
 
   ngOnInit() {
   }

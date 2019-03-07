@@ -1,3 +1,15 @@
-<p>
-  associaltion-result works!
-</p>
+<div class="row">
+    <div class="col-12">
+      <h1>Here is products people at SafeWay usually buy with Eggs!</h1>
+    </div>
+    <div class="col-12 ">
+        <mat-selection-list #products class="result-table">
+            <mat-list-option *ngFor="let product of productList">
+              {{product.name}} with {{product.support}} % of confidence
+            </mat-list-option>
+          </mat-selection-list>
+          <p>
+              Options selected: {{products.selectedOptions.selected.length}}
+          </p>
+    </div>
+</div>
