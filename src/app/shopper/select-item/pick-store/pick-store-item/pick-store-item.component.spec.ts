@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PickStoreComponent } from './pick-store.component';
+import { PickStoreItemComponent } from './pick-store-item.component';
 
-describe('PickStoreComponent', () => {
-  let component: PickStoreComponent;
-  let fixture: ComponentFixture<PickStoreComponent>;
+describe('PickStoreItemComponent', () => {
+  let component: PickStoreItemComponent;
+  let fixture: ComponentFixture<PickStoreItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PickStoreComponent ]
+      declarations: [ PickStoreItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PickStoreComponent);
+    fixture = TestBed.createComponent(PickStoreItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
