@@ -13,6 +13,7 @@ export class SelectItemComponent implements OnInit {
   productList: Product[];
   constructor() {
     let temp = new StoreItem();
+    temp.storeId = 1;
     temp.storeName = "SafeWay";
     temp.storeDescription = "Cupertino";
 
@@ -21,6 +22,14 @@ export class SelectItemComponent implements OnInit {
     let productTemp = new Product();
     productTemp.name = "SET 2 TEA TOWELS";
     this.productList = [productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp,productTemp];
+   }
+
+   fetchStores() {
+
+   }
+
+   fetchProducts(storeId: number) {
+
    }
 
   ngOnInit() {

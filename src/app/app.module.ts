@@ -10,6 +10,7 @@ import { SelectItemComponent } from './shopper/select-item/select-item.component
 import {MatCardModule, MatButtonModule} from '@angular/material';
 import { PickStoreItemComponent } from './shopper/select-item/pick-store/pick-store-item/pick-store-item.component';
 import { SelectProductComponent } from './shopper/select-item/select-product/select-product.component';
+import { AssocialtionResultComponent } from './shopper/associaltion-result/associaltion-result.component';
 
 const appRoutes: Routes = [
   { path: 'shopper/select-item', component: SelectItemComponent },
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
     TestComponent,
     SelectItemComponent,
     PickStoreItemComponent,
-    SelectProductComponent
+    SelectProductComponent,
+    AssocialtionResultComponent
   ],
   imports: [
     RouterModule.forRoot(
