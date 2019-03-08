@@ -14,7 +14,7 @@ export class StoreAssociationResultComponent implements OnInit {
 
   constructor(private storeAssociationFetcherService: StoreAssociationFetcherService) { }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['name', 'associatedItems', 'levelOfConfidence'];
   dataSource = new MatTableDataSource(this.storeAssociationFetcherService.getAllArticles());
 
   ngOnInit() {

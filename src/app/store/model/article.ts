@@ -1,6 +1,5 @@
 export interface Article {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  itemName: string;
+  associatedItemNames: string;
+  levelOfConfidence: number;
 } 
