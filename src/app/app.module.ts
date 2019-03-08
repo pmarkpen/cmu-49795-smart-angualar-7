@@ -11,10 +11,12 @@ import {MatCardModule, MatButtonModule, MatListModule} from '@angular/material';
 import { PickStoreItemComponent } from './shopper/select-item/pick-store/pick-store-item/pick-store-item.component';
 import { SelectProductComponent } from './shopper/select-item/select-product/select-product.component';
 import { AssocialtionResultComponent } from './shopper/associaltion-result/associaltion-result.component';
+import { UploadFileComponent } from './store/upload-file/upload-file.component';
 
 const appRoutes: Routes = [
   { path: 'shopper/select-item', component: SelectItemComponent },
   { path: 'shopper/association-result', component: AssocialtionResultComponent },
+  { path: 'store/upload-file', component: UploadFileComponent },
 ];
 
 
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     SelectItemComponent,
     PickStoreItemComponent,
     SelectProductComponent,
-    AssocialtionResultComponent
+    AssocialtionResultComponent,
+    UploadFileComponent
   ],
   imports: [
     RouterModule.forRoot(
