@@ -12,11 +12,13 @@ import { PickStoreItemComponent } from './shopper/select-item/pick-store/pick-st
 import { SelectProductComponent } from './shopper/select-item/select-product/select-product.component';
 import { AssocialtionResultComponent } from './shopper/associaltion-result/associaltion-result.component';
 import { UploadFileComponent } from './store/upload-file/upload-file.component';
+import { StoreAssociationResultComponent } from './store/store-association-result/store-association-result.component';
 
 const appRoutes: Routes = [
   { path: 'shopper/select-item', component: SelectItemComponent },
   { path: 'shopper/association-result', component: AssocialtionResultComponent },
   { path: 'store/upload-file', component: UploadFileComponent },
+  { path: 'store/store-association-result', component: StoreAssociationResultComponent },
 ];
 
 
@@ -28,7 +30,8 @@ const appRoutes: Routes = [
     PickStoreItemComponent,
     SelectProductComponent,
     AssocialtionResultComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    StoreAssociationResultComponent
   ],
   imports: [
     RouterModule.forRoot(

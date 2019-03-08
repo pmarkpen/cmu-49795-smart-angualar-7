@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { S3FileUploaderService } from './s3-file-uploader.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload-file',
@@ -9,14 +10,16 @@ import { S3FileUploaderService } from './s3-file-uploader.service';
 export class UploadFileComponent implements OnInit {
 
   selectedFiles:any;
-  constructor(private s3FileUploaderService: S3FileUploaderService) { }
+  constructor(private s3FileUploaderService: S3FileUploaderService, private router: Router) { }
 
   ngOnInit() {
   }
 
   upload() {
     const file = this.selectedFiles.item(0);
-    this.s3FileUploaderService.uploadfile(file);
+    this.s3FileUploaderService.uploadfile(file).subscribe((data) => {
+      this.router.navigateByUrl('store/store-association-result');
+    });
   }
  
   selectFile(event) {
