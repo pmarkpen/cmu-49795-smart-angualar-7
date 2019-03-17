@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import StoreItem from './model/store-item';
 import Product from './model/product';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import FetchStoreResponse from './model/fetch-store-response';
+import FetchProductResponse from './model/fetch-product-response';
 
 @Component({
   selector: 'app-select-item',
@@ -12,7 +15,7 @@ export class SelectItemComponent implements OnInit {
 
   storeList: StoreItem[];
   productList: Product[];
-  constructor(private router: Router) {
+  constructor(private router: Router,private http: HttpClient) {
     let temp = new StoreItem();
     temp.storeId = 1;
     temp.storeName = "SafeWay";
@@ -26,11 +29,15 @@ export class SelectItemComponent implements OnInit {
   }
 
   fetchStores() {
+    this.http.get('').subscribe((response: FetchStoreResponse) => {
 
+    });
   }
 
   fetchProducts(storeId: number) {
+    this.http.get('').subscribe((response: FetchProductResponse) => {
 
+    });
   }
 
   ngOnInit() {

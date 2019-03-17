@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Article } from './model/article';
 
 const All_ARTICLES: Article[] = [
-  {itemName: 'Hydrogen', levelOfConfidence: 1.0079, associatedItemNames: 'H'},
+  {itemName: 'WOODLAND CHARLOTTE BAG', levelOfConfidence: 1.0079, associatedItemNames: 'RED RETROSPOT CHARLOTTE BAG, CHARLOTTE BAG SUKI DESIGN'},
   {itemName: 'Helium', levelOfConfidence: 4.0026, associatedItemNames: 'He'},
   {itemName: 'Lithium', levelOfConfidence: 6.941, associatedItemNames: 'Li'},
   {itemName: 'Beryllium', levelOfConfidence: 9.0122, associatedItemNames: 'Be'},
