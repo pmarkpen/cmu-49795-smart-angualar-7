@@ -19,7 +19,7 @@ export class SelectItemComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {
     this.storeList = [];
     let productTemp = new Product();
-    productTemp.name = "SET 2 TEA TOWELS";
+    productTemp.name = "JUMBO BAG RED RETROSPOT";
     this.productList = [productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp];
   }
 
