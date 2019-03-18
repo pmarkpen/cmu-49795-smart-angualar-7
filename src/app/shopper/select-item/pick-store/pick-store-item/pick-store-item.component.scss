@@ -3,3 +3,17 @@
     margin-left: 10px;
     margin-top: 10px;
 }
+
+mat-card-title {
+    text-align: center;
+}
+
+:host.active { 
+    & mat-card-title {
+        color: #b00017;
+    }
+   
+    & mat-card-content {
+        color: #b00017;
+    }
+}

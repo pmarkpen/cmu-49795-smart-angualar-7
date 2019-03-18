@@ -15,6 +15,7 @@ export class SelectItemComponent implements OnInit {
 
   storeList: StoreItem[];
   productList: Product[];
+  selectedStore: StoreItem;
   constructor(private router: Router, private http: HttpClient) {
     this.storeList = [];
     let productTemp = new Product();
@@ -46,5 +47,16 @@ export class SelectItemComponent implements OnInit {
 
   onClickProduct(product: Product) {
     this.router.navigateByUrl('shopper/association-result');
+  }
+
+  onClickStore(store: StoreItem) {
+    this.selectedStore = store;
+  }
+
+  isStoreClicked(storeItem: StoreItem) {
+    if(this.selectedStore === undefined) {
+      return false;
+    }
+    return this.selectedStore.id === storeItem.id;
   }
 }
