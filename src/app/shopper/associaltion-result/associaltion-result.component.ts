@@ -15,7 +15,7 @@ export class AssocialtionResultComponent implements OnInit {
   productList: AssociatedProductItem[];
   constructor(private route: ActivatedRoute, private http: HttpClient) {
     this.productList = [];
-    
+
   }
 
   ngOnInit() {
@@ -28,8 +28,17 @@ export class AssocialtionResultComponent implements OnInit {
     this.http.get(`http://localhost:3000/api/association/${this.storeId}/${this.productId}`).subscribe((response: AssociatedProductItemResponse) => {
       response.result.requests.forEach((item) => {
         let product: AssociatedProductItem = new AssociatedProductItem();
-        product.name = item.itemsets.reduce((p, c) => {
-          return `${p}, ${c}`;
+        product.name = "";
+
+        item.itemsets.forEach((pName) => {
+          if (pName != this.productId) {
+            if (product.name == "") {
+              product.name = pName;
+              return;
+            }
+
+            product.name = `${product.name}, ${pName}`;
+          }
         });
         product.support = item.support;
         this.productList.push(product);

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12">
-        <h1>Here is products people at SafeWay usually buy with {{productId}}!</h1>
+        <h3>Here is products people at SafeWay usually buy with {{productId}}!</h3>
     </div>
     <div class="col-12 ">
         <mat-selection-list #products class="result-table">
@@ -16,13 +16,13 @@
 
             </mat-list-option>
         </mat-selection-list>
-        <p>
+    </div>
+    <div class="col-12 option-selected">
             Options selected: {{products.selectedOptions.selected.length}}
-        </p>
     </div>
 </div>
 <div class="row action-panel">
-    <div class="col">
-        <button mat-stroked-button>Add to your virtual cart!</button>
+    <div class="col-12">
+        <button mat-raised-button color="accent"> <i class="fas fa-cart-plus"></i> Add {{products.selectedOptions.selected.length}} Items to your virtual cart!</button>
     </div>
 </div>
