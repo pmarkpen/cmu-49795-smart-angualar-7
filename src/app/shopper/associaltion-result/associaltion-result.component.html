@@ -1,16 +1,24 @@
 <div class="row">
     <div class="col-12">
-      <h1>Here is products people at SafeWay usually buy with Eggs!</h1>
+        <h1>Here is products people at SafeWay usually buy with {{productId}}!</h1>
     </div>
     <div class="col-12 ">
         <mat-selection-list #products class="result-table">
             <mat-list-option *ngFor="let product of productList">
-              {{product.name}} with {{product.support}} % of confidence
+                <div>
+                    <div class="name">
+                        {{product.name}}
+                    </div>
+                    <div class="confidence">
+                        {{product.support}} % of confidence
+                    </div>
+                </div>
+
             </mat-list-option>
-          </mat-selection-list>
-          <p>
-              Options selected: {{products.selectedOptions.selected.length}}
-          </p>
+        </mat-selection-list>
+        <p>
+            Options selected: {{products.selectedOptions.selected.length}}
+        </p>
     </div>
 </div>
 <div class="row action-panel">
