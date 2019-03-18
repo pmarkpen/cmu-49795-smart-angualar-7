@@ -18,9 +18,7 @@ export class SelectItemComponent implements OnInit {
   selectedStore: StoreItem;
   constructor(private router: Router, private http: HttpClient) {
     this.storeList = [];
-    let productTemp = new Product();
-    productTemp.name = "JUMBO BAG RED RETROSPOT";
-    this.productList = [productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp];
+    this.productList = [];
   }
 
   fetchStores() {
@@ -35,9 +33,17 @@ export class SelectItemComponent implements OnInit {
     });
   }
 
-  fetchProducts(storeId: number) {
-    this.http.get('').subscribe((response: FetchProductResponse) => {
-
+  fetchProducts(storeId: string) {
+    this.productList = [];
+    this.http.get(`http://localhost:3000/api/stores/${storeId}`).subscribe((response: FetchProductResponse) => {
+      if(response.result.requests.length >= 1) {
+        response.result.requests[0].products.sort();
+        response.result.requests[0].products.forEach((uniqueProductName) => {
+          let pItem = new Product();
+          pItem.name = uniqueProductName;
+          this.productList.push(pItem);
+        });
+      }
     });
   }
 
@@ -51,6 +57,7 @@ export class SelectItemComponent implements OnInit {
 
   onClickStore(store: StoreItem) {
     this.selectedStore = store;
+    this.fetchProducts(store.id);
   }
 
   isStoreClicked(storeItem: StoreItem) {

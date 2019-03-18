@@ -1,6 +1,6 @@
 export default class StoreList {
-    id: String;
-    name: String;
-    description: String;
+    id: string;
+    name: string;
+    description: string;
     isSelected: boolean;
 }
