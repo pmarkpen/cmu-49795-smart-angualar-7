@@ -46,7 +46,7 @@ export class SelectItemComponent implements OnInit {
   }
 
   onClickProduct(product: Product) {
-    this.router.navigateByUrl('shopper/association-result');
+    this.router.navigateByUrl(`shopper/association-result/${this.selectedStore.id}/${product.name}`);
   }
 
   onClickStore(store: StoreItem) {

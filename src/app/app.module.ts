@@ -18,7 +18,7 @@ import { StoreInformationService } from './store-information.service';
 
 const appRoutes: Routes = [
   { path: 'shopper/select-item', component: SelectItemComponent },
-  { path: 'shopper/association-result', component: AssocialtionResultComponent },
+  { path: 'shopper/association-result/:storeId/:productId', component: AssocialtionResultComponent },
   { path: 'store/upload-file', component: UploadFileComponent },
   { path: 'store/store-association-result', component: StoreAssociationResultComponent },
 ];
