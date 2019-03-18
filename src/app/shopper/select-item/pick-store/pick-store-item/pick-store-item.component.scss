@@ -2,6 +2,7 @@
     display: inline-block;
     margin-left: 10px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 mat-card-title {
@@ -9,6 +10,10 @@ mat-card-title {
 }
 
 :host.active { 
+    & mat-card {
+        box-shadow: 0 4px 4px -1px rgba(2, 2, 2, 0.57), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)
+    }
+    
     & mat-card-title {
         color: #b00017;
     }

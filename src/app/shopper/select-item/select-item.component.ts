@@ -27,9 +27,9 @@ export class SelectItemComponent implements OnInit {
     this.http.get(`http://localhost:3000/api/stores`).subscribe((response: FetchStoreResponse) => {
       response.result.requests.forEach((s) => {
         let store = new StoreItem();
-        store.id = s.id;
-        store.name = s.name;
-        store.description = s.description;
+        store.id = s.storeID;
+        store.name = s.storeName;
+        store.description = s.storeDescription;
         this.storeList.push(store);
       });
     });
