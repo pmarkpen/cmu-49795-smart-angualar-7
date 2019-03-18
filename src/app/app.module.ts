@@ -14,6 +14,7 @@ import { SelectProductComponent } from './shopper/select-item/select-product/sel
 import { AssocialtionResultComponent } from './shopper/associaltion-result/associaltion-result.component';
 import { UploadFileComponent } from './store/upload-file/upload-file.component';
 import { StoreAssociationResultComponent } from './store/store-association-result/store-association-result.component';
+import { StoreInformationService } from './store-information.service';
 
 const appRoutes: Routes = [
   { path: 'shopper/select-item', component: SelectItemComponent },
@@ -52,7 +53,7 @@ const appRoutes: Routes = [
     MatPaginatorModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [StoreInformationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

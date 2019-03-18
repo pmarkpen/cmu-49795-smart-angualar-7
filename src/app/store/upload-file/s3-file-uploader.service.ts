@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class S3FileUploaderService {
 
 
-  FOLDER = 'store-transactions/';
+  FOLDER = 'store-transactions/Test';
   US_OHIO_REGION_ID = "us-east-2";
   constructor() { }
 

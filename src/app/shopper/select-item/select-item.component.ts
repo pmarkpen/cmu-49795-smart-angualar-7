@@ -15,22 +15,22 @@ export class SelectItemComponent implements OnInit {
 
   storeList: StoreItem[];
   productList: Product[];
-  constructor(private router: Router,private http: HttpClient) {
-    let temp = new StoreItem();
-    temp.storeId = 1;
-    temp.storeName = "SafeWay";
-    temp.storeDescription = "Cupertino";
-
-    this.storeList = [temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp, temp];
-
+  constructor(private router: Router, private http: HttpClient) {
+    this.storeList = [];
     let productTemp = new Product();
     productTemp.name = "SET 2 TEA TOWELS";
     this.productList = [productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp, productTemp];
   }
 
   fetchStores() {
-    this.http.get('').subscribe((response: FetchStoreResponse) => {
-
+    this.http.get(`http://localhost:3000/api/stores`).subscribe((response: FetchStoreResponse) => {
+      response.result.requests.forEach((s) => {
+        let store = new StoreItem();
+        store.id = s.id;
+        store.name = s.name;
+        store.description = s.description;
+        this.storeList.push(store);
+      });
     });
   }
 
@@ -41,6 +41,7 @@ export class SelectItemComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.fetchStores();
   }
 
   onClickProduct(product: Product) {

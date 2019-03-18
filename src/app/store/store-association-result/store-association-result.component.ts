@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
-import { StoreAssociationFetcherService } from '../store-association-fetcher.service';
 import { HttpClient } from '@angular/common/http'
 import { Article } from '../model/article';
+import { StoreInformationService } from '../../store-information.service';
 
 @Component({
   selector: 'app-store-association-result',
@@ -13,8 +13,8 @@ export class StoreAssociationResultComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  constructor(private storeAssociationFetcherService: StoreAssociationFetcherService, private httpClient: HttpClient) { }
+  storeName: string;
+  constructor(private httpClient: HttpClient, private storeInformationService: StoreInformationService) { }
 
   displayedColumns: string[] = ['name', 'associatedItems', 'levelOfConfidence'];
   dataSource = new MatTableDataSource([]);
@@ -23,6 +23,10 @@ export class StoreAssociationResultComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.fetchResult();
+    this.storeName = this.storeInformationService.storeName;
+    this.dataSource.filterPredicate = function(data: Article, filter: string): boolean {
+      return data.itemName.toLowerCase().includes(filter);
+    };
   }
 
   public doFilter = (value: string) => {
@@ -31,7 +35,7 @@ export class StoreAssociationResultComponent implements OnInit {
 
   public fetchResult() {
 
-    this.httpClient.get('http://localhost:3000/api/association/sample/').subscribe((response: FetchStoreAssociationResponse) => {
+    this.httpClient.get(`http://localhost:3000/api/association/${this.storeInformationService.storeId}/`).subscribe((response: FetchStoreAssociationResponse) => {
       let result: Article[] = [];
       response.result.requests.forEach(element => {
         if (element.length > 1) {
