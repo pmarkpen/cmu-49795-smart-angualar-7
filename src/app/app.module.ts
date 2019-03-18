@@ -15,6 +15,7 @@ import { AssocialtionResultComponent } from './shopper/associaltion-result/assoc
 import { UploadFileComponent } from './store/upload-file/upload-file.component';
 import { StoreAssociationResultComponent } from './store/store-association-result/store-association-result.component';
 import { StoreInformationService } from './store-information.service';
+import { MyFilterPipe } from './filter';
 
 const appRoutes: Routes = [
   { path: 'shopper/select-item', component: SelectItemComponent },
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
     SelectProductComponent,
     AssocialtionResultComponent,
     UploadFileComponent,
-    StoreAssociationResultComponent
+    StoreAssociationResultComponent,
+    MyFilterPipe
   ],
   imports: [
     RouterModule.forRoot(

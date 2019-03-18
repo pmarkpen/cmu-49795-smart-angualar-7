@@ -16,6 +16,7 @@ export class SelectItemComponent implements OnInit {
   storeList: StoreItem[];
   productList: Product[];
   selectedStore: StoreItem;
+  filterValue: string;
   constructor(private router: Router, private http: HttpClient) {
     this.storeList = [];
     this.productList = [];
@@ -65,5 +66,9 @@ export class SelectItemComponent implements OnInit {
       return false;
     }
     return this.selectedStore.id === storeItem.id;
+  }
+
+  doFilter(value: string) {
+    this.filterValue = value;
   }
 }
