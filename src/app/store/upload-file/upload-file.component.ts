@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { S3FileUploaderService } from './s3-file-uploader.service';
 import { Router } from '@angular/router';
 
@@ -14,6 +14,7 @@ function getWindow(): any {
 export class UploadFileComponent implements OnInit {
 
   selectedFiles: any;
+  @ViewChild('mediaFile') mediaFile;
   constructor(private s3FileUploaderService: S3FileUploaderService, private router: Router) { }
 
   ngOnInit() {
@@ -78,4 +79,15 @@ export class UploadFileComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
 
+  getFileName() {
+    if(this.selectedFiles === undefined || this.selectedFiles.item(0) === undefined) {
+      return "";
+    }
+
+    return this.selectedFiles.item(0).name;
+  }
+
+  onClickSelectFile() {
+    this.mediaFile.nativeElement.click();
+  }
 }
