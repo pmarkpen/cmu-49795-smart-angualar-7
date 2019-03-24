@@ -3,6 +3,7 @@ import { S3FileUploaderService } from './s3-file-uploader.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ImportFileServiceService, ImportFileStatusResponse } from './import-file-service.service';
+import { StoreInformationService } from '../../store-information.service';
 
 function getWindow(): any {
   return window;
@@ -18,26 +19,25 @@ export class UploadFileComponent implements OnInit {
   selectedFiles: any;
   @ViewChild('mediaFile') mediaFile;
   status: string;
-  storeID: string;
   statusCode: number;
   constructor(private s3FileUploaderService: S3FileUploaderService,
     private router: Router,
-    private importFileServiceService: ImportFileServiceService) { }
+    private importFileServiceService: ImportFileServiceService,
+    private storeInformationService: StoreInformationService) { }
 
   ngOnInit() {
     this.status = "Click to browse";
     this.statusCode = -1;
-    this.storeID = "sample";
   }
 
   upload() {
     this.uploadFileToFirebase().subscribe((fileURL: string) => {
-      this.importFileServiceService.import(fileURL, this.storeID).subscribe(() => {
+      this.importFileServiceService.import(fileURL, this.storeInformationService.storeId).subscribe(() => {
 
       });
       
       let promise = setInterval(() => {
-        this.importFileServiceService.getImportStatus(this.storeID).subscribe((serverResponse: ImportFileStatusResponse) => {
+        this.importFileServiceService.getImportStatus(this.storeInformationService.storeId).subscribe((serverResponse: ImportFileStatusResponse) => {
           this.status = serverResponse.result.requests[0].status;
           this.statusCode = serverResponse.result.requests[0].code;
 
@@ -45,13 +45,13 @@ export class UploadFileComponent implements OnInit {
             clearInterval(promise);
           }
         });
-      }, 1000);
+      }, 100);
      
     });
   }
 
   onClickNext() {
-    
+    this.router.navigateByUrl(`/store/store-association-result`);
   }
 
   uploadFileToFirebase(): Observable<string> {
@@ -146,5 +146,14 @@ export class UploadFileComponent implements OnInit {
 
   isDone() {
     return this.statusCode === 6;
+  }
+
+  get storeIDInput() {
+    return this.storeInformationService.storeId;
+  }
+
+  set storeIDInput(newId: string) {
+    this.storeInformationService.storeId = newId;
+    this.storeInformationService.storeName = newId;
   }
 }

@@ -16,6 +16,7 @@ import { UploadFileComponent } from './store/upload-file/upload-file.component';
 import { StoreAssociationResultComponent } from './store/store-association-result/store-association-result.component';
 import { StoreInformationService } from './store-information.service';
 import { MyFilterPipe } from './filter';
+import { FormsModule } from '@angular/forms';
 import * as firebase from 'firebase';
 
 const appRoutes: Routes = [
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     ),
+    FormsModule,
     BrowserModule,
     HttpClientModule,
     
