@@ -23,7 +23,7 @@ export class UploadFileComponent implements OnInit {
   constructor(private s3FileUploaderService: S3FileUploaderService,
     private router: Router,
     private importFileServiceService: ImportFileServiceService,
-    private storeInformationService: StoreInformationService) { }
+    public storeInformationService: StoreInformationService) { }
 
   ngOnInit() {
     this.status = "Click to browse";
