@@ -10,14 +10,15 @@
             <div class="table-cell">
               <div class="container">
                 <div id="profile" (click)="onClickSelectFile()">
-                  <div class="dashes"></div>
-                  <label>Click to browse</label>
+                  <div class="dashes" [ngClass]="{'processing': isImporting(), 'done': isDone()}"></div>
+                  <label>{{status}}</label>
                 </div>
                 <div class="editable">
                   <h1 class="customize">{{getFileName()}}</h1>
                 </div>
                 
-                <button (click)="upload()">Upload</button>
+                <button class="upload-btn" [hidden]="isShowDoneBtn()" (click)="upload()" [disabled]="isUploadBtnDisabled()">Upload</button>
+                <button class="upload-btn-done" [hidden]="!isShowDoneBtn()" (click)="onClickNext()" [disabled]="isUploadBtnDisabled()">Next</button>
               </div>
             </div>
           </div>

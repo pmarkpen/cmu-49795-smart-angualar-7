@@ -14,6 +14,12 @@
   visibility: hidden;
 }
 
+button.upload-btn {
+  &:disabled {
+    background-color: #9c9598 !important;
+  }
+}
+
 .table {
   display: table;
   width: 100%;
@@ -55,6 +61,19 @@
       height: 100%;
       border: 4px dashed #ddd;
       opacity: 1;
+
+      &.processing {
+        border-color: #bb1414;
+        animation-duration: 10s;
+        animation-name: spin;
+        animation-iteration-count:infinite;
+        animation-timing-function: linear;
+        opacity: 1!important;
+      }
+
+      &.done {
+        border-color: green;
+      }
     }
     label {
       display: table-cell;
@@ -64,19 +83,7 @@
       color: grey;
       opacity: 1;
     }
-    &.dragging {
-      background-image: none!important;
-      .dashes {
-        animation-duration: 10s;
-        animation-name: spin;
-        animation-iteration-count:infinite;
-        animation-timing-function: linear;
-        opacity: 1!important;
-      }
-      label {
-        opacity: 0.5!important;
-      }
-    }
+  
     &.hasImage {
       .dashes, label {
         opacity: 0;
@@ -125,12 +132,19 @@
     line-height: 40px;
     color: #fff;
     border: none;
-    background-color: #ea4c89;
     margin-top: 30px;
     font-size: 13px;
     -webkit-font-smoothing: antialiased;
     font-weight: bold;
     letter-spacing: 1px;
-    text-transform: uppercase
+    text-transform: uppercase;
+
+    &.upload-btn {
+      background-color: #ea4c89;
+    }
+
+    &.upload-btn-done {
+      background-color: green;
+    }
   }
 }
