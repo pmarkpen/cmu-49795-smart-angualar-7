@@ -4,37 +4,26 @@
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/shopper/select-item" routerLinkActive="active">Query Items <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="store/upload-file" routerLinkActive="active">Upload File</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="store/store-association-result" routerLinkActive="active">Query Items for Store</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Virtual Cart</a>
-      </li>
-    </ul>
-  </div>
 </nav>
 <div class="container-fluid">
   <div class="row">
     <div class="col-2 left-menu-container">
       <div class="row">
         <div class="col left-menu">
-          <div class="col-12 menu-item">
+          <div class="col-12 menu-item" routerLink="/home" routerLinkActive="active">
             <i class="fas fa-home"></i> Home
           </div>
-          <div class="col-12 menu-item">
+          <div class="col-12 menu-item" routerLink="/shopper/select-item" routerLinkActive="active">
             <i class="fas fa-football-ball"></i> Explore Products
           </div>
           <div class="col-12 menu-item">
             <i class="fas fa-shopping-cart"></i> My virtual cart
+          </div>
+          <div class="col-12 menu-item" routerLink="/store/upload-file" routerLinkActive="active">
+            <i class="fas fa-upload"></i> Upload File
+          </div>
+          <div class="col-12 menu-item" routerLink="/store/store-association-result" routerLinkActive="active">
+            <i class="fas fa-search-dollar"></i> Query Items
           </div>
         </div>
       </div>

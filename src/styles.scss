@@ -7,3 +7,5 @@ html, body {
     letter-spacing: 1px;
 }
 body { margin: 0; font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
+
+button:focus, div {outline:0;}

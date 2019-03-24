@@ -18,8 +18,10 @@ import { StoreInformationService } from './store-information.service';
 import { MyFilterPipe } from './filter';
 import { FormsModule } from '@angular/forms';
 import * as firebase from 'firebase';
+import { DashBoardComponent } from './dash-board/dash-board.component';
 
 const appRoutes: Routes = [
+  {path: 'home', component: DashBoardComponent},
   { path: 'shopper/select-item', component: SelectItemComponent },
   { path: 'shopper/association-result/:storeId/:productId', component: AssocialtionResultComponent },
   { path: 'store/upload-file', component: UploadFileComponent },
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
     AssocialtionResultComponent,
     UploadFileComponent,
     StoreAssociationResultComponent,
-    MyFilterPipe
+    MyFilterPipe,
+    DashBoardComponent
   ],
   imports: [
     RouterModule.forRoot(
