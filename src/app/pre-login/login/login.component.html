@@ -1,7 +1,7 @@
 <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<div class="login100-form validate-form">
 					<span class="login100-form-title p-b-26">
 						 Welcome to
           </span>
@@ -12,21 +12,21 @@
 						<i class="zmdi zmdi-font"></i>
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input class="input100" type="text" name="email" placeholder="{{idDescription}}">
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="email" [(ngModel)]="id" placeholder="{{idDescription}}">
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
+					<div class="wrap-input100 validate-input">
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
-						<input class="input100" type="password" name="pass">
+						<input class="input100" type="password" name="pass" [(ngModel)]="password">
 						<span class="focus-input100" data-placeholder="Password"></span>
           </div>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
+							<button class="login100-form-btn" (click)="onClickLogin()">
 								Login
 							</button>
 						</div>
@@ -41,7 +41,7 @@
 							Sign Up
 						</a>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>

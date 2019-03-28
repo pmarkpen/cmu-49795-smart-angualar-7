@@ -22,6 +22,7 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
 import { CommonModule } from '@angular/common';
 
 const appRoutes: Routes = [
+  { path: '', redirectTo: 'after-login', pathMatch: 'full' },
   {
     path: 'after-login'
     , loadChildren: './after-login/after-login.module#AfterLoginModule'

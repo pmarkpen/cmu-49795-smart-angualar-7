@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   isStore: boolean;
+  id: string;
+  password: string;
   constructor(private route: ActivatedRoute, private router: Router) {
 
    }
@@ -23,5 +25,20 @@ export class LoginComponent implements OnInit {
   get idDescription(): string {
     return this.isStore? 'StoreId' : 'UserId';
   }
+
+  onClickLogin() {
+    if(this.id === "" || this.id === undefined) {
+      alert("Please insert id");
+      return
+    }
+
+    if(this.password === "" || this.password === undefined) {
+      alert("Please insert password");
+      return
+    }
+    
+  }
+
+
 
 }
