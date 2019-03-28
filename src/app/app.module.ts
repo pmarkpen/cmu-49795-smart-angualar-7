@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectItemComponent } from './shopper/select-item/select-item.component';
-import {MatCardModule, MatButtonModule, MatListModule, MatTableModule, MatSortModule,MatPaginatorModule, MatInputModule} from '@angular/material';
+import { MatCardModule, MatButtonModule, MatListModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule } from '@angular/material';
 import { PickStoreItemComponent } from './shopper/select-item/pick-store/pick-store-item/pick-store-item.component';
 import { SelectProductComponent } from './shopper/select-item/select-product/select-product.component';
 import { AssocialtionResultComponent } from './shopper/associaltion-result/associaltion-result.component';
@@ -19,13 +19,13 @@ import { MyFilterPipe } from './filter';
 import { FormsModule } from '@angular/forms';
 import * as firebase from 'firebase';
 import { DashBoardComponent } from './dash-board/dash-board.component';
+import { CommonModule } from '@angular/common';
 
 const appRoutes: Routes = [
-  {path: 'home', component: DashBoardComponent},
-  { path: 'shopper/select-item', component: SelectItemComponent },
-  { path: 'shopper/association-result/:storeId/:productId', component: AssocialtionResultComponent },
-  { path: 'store/upload-file', component: UploadFileComponent },
-  { path: 'store/store-association-result', component: StoreAssociationResultComponent },
+  {
+    path: 'after-login'
+    , loadChildren: './after-login/after-login.module#AfterLoginModule'
+  }
 ];
 
 
@@ -33,33 +33,17 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     TestComponent,
-    SelectItemComponent,
-    PickStoreItemComponent,
-    SelectProductComponent,
-    AssocialtionResultComponent,
-    UploadFileComponent,
-    StoreAssociationResultComponent,
-    MyFilterPipe,
-    DashBoardComponent
   ],
   imports: [
+    BrowserModule,
+    CommonModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     ),
-    FormsModule,
-    BrowserModule,
-    HttpClientModule,
-    
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatButtonModule,
-    MatListModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatInputModule
   ],
   providers: [StoreInformationService],
   bootstrap: [AppComponent]
