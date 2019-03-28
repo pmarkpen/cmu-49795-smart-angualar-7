@@ -25,6 +25,9 @@ const appRoutes: Routes = [
   {
     path: 'after-login'
     , loadChildren: './after-login/after-login.module#AfterLoginModule'
+  }, {
+    path: 'pre-login'
+    , loadChildren: './pre-login/pre-login.module#PreLoginModule'
   }
 ];
 
