@@ -20,12 +20,14 @@ import { FormsModule } from '@angular/forms';
 import * as firebase from 'firebase';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { CommonModule } from '@angular/common';
+import { AuthGuardService } from './auth-guard.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'after-login', pathMatch: 'full' },
   {
     path: 'after-login'
     , loadChildren: './after-login/after-login.module#AfterLoginModule'
+    , canActivate: [AuthGuardService]
   }, {
     path: 'pre-login'
     , loadChildren: './pre-login/pre-login.module#PreLoginModule'
@@ -49,7 +51,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     ),
   ],
-  providers: [StoreInformationService],
+  providers: [StoreInformationService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

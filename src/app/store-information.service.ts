@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class StoreInformationService {
 
+  isStore: boolean;
   storeId: string;
   storeName: string;
   constructor() { 
-    this.storeId = "sample";
-    this.storeName = "Sample";
+    this.isStore = false;
   }
 
 }

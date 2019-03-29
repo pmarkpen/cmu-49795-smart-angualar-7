@@ -151,9 +151,4 @@ export class UploadFileComponent implements OnInit {
   get storeIDInput() {
     return this.storeInformationService.storeId;
   }
-
-  set storeIDInput(newId: string) {
-    this.storeInformationService.storeId = newId;
-    this.storeInformationService.storeName = newId;
-  }
 }

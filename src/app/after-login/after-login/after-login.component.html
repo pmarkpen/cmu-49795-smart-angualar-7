@@ -13,16 +13,16 @@
           <div class="col-12 menu-item" routerLink="/after-login/home" routerLinkActive="active">
             <i class="fas fa-home"></i> Home
           </div>
-          <div class="col-12 menu-item" routerLink="/after-login/shopper/select-item" routerLinkActive="active">
+          <div class="col-12 menu-item" [hidden]="!isShopper()" routerLink="/after-login/shopper/select-item" routerLinkActive="active">
             <i class="fas fa-football-ball"></i> Explore Products
           </div>
-          <div class="col-12 menu-item">
+          <div class="col-12 menu-item"  [hidden]="!isShopper()">
             <i class="fas fa-shopping-cart"></i> My virtual cart
           </div>
-          <div class="col-12 menu-item" routerLink="/after-login/store/upload-file" routerLinkActive="active">
+          <div class="col-12 menu-item"  [hidden]="!isStore()" routerLink="/after-login/store/upload-file" routerLinkActive="active">
             <i class="fas fa-upload"></i> Upload File
           </div>
-          <div class="col-12 menu-item" routerLink="/after-login/store/store-association-result" routerLinkActive="active">
+          <div class="col-12 menu-item"  [hidden]="!isStore()"  routerLink="/after-login/store/store-association-result" routerLinkActive="active">
             <i class="fas fa-search-dollar"></i> Query Items
           </div>
         </div>
