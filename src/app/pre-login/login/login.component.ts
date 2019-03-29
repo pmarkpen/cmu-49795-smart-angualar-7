@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShopperInformationService } from '../../shopper-information.service';
 import { StoreInformationService } from '../../store-information.service';
+import { AuthGuardService } from '../../auth-guard.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private shopperInformationService: ShopperInformationService,
-    private storeInformationService: StoreInformationService) {
+    private storeInformationService: StoreInformationService,
+  private authGuardService: AuthGuardService) {
 
   }
 
@@ -43,14 +45,12 @@ export class LoginComponent implements OnInit {
     }
 
     if (this.isStore) {
-      this.storeInformationService.storeId = this.id;
-      this.storeInformationService.storeName = this.id;
-      this.shopperInformationService.isShopper = true;
+      this.storeInformationService.setInformation(true, this.id, this.id);
     } else {
-      this.shopperInformationService.firstName = this.id;
-      this.shopperInformationService.isShopper = true;
+      this.shopperInformationService.setInformation(true, this.id, this.id, this.id);
     }
 
+    this.authGuardService.setLogIn();
     this.router.navigateByUrl("/after-login/home")
   }
 

@@ -23,7 +23,7 @@ import { CommonModule } from '@angular/common';
 import { AuthGuardService } from './auth-guard.service';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'after-login', pathMatch: 'full' },
+  { path: '', redirectTo: '/pre-login/login', pathMatch: 'full' },
   {
     path: 'after-login'
     , loadChildren: './after-login/after-login.module#AfterLoginModule'

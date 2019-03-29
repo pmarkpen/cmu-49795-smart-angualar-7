@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [{
   path: '', component: AfterLoginComponent, children: [
-    { path: 'home', component: DashBoardComponent },
+    { path: 'home', component: DashBoardComponent  },
     { path: 'shopper/select-item', component: SelectItemComponent },
     { path: 'shopper/association-result/:storeId/:productId', component: AssocialtionResultComponent },
     { path: 'store/upload-file', component: UploadFileComponent },
