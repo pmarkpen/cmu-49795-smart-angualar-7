@@ -10,6 +10,10 @@ export class ShopperInformationService {
   firstName: string;
   lastName: string;
   constructor() {
+    this.isShopper = false;
+  }
+
+  update() {
     let sessionInformation = JSON.parse(sessionStorage.getItem("storeInformation")) || {};
     this.isShopper = sessionInformation.isShopper || false;
     this.shopperId = sessionInformation.shopperId || "";

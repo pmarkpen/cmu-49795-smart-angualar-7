@@ -9,6 +9,10 @@ export class StoreInformationService {
   storeId: string;
   storeName: string;
   constructor() { 
+    this.isStore = false;
+  }
+
+  update() {
     let sessionInformation = JSON.parse(sessionStorage.getItem("storeInformation")) || {};
     this.isStore = sessionInformation.isStore || false;
     this.storeId = sessionInformation.storeId || "";
@@ -16,7 +20,7 @@ export class StoreInformationService {
   }
 
   setInformation(isStore: boolean, storeId: string, storeName: string) {
-    this.isStore = true;
+    this.isStore = isStore;
     this.storeId = storeId;
     this.storeName = storeName;
     sessionStorage.setItem("storeInformation", JSON.stringify({

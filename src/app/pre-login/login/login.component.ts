@@ -44,10 +44,14 @@ export class LoginComponent implements OnInit {
       return
     }
 
+    sessionStorage.clear();
+
     if (this.isStore) {
       this.storeInformationService.setInformation(true, this.id, this.id);
+      this.shopperInformationService.update();
     } else {
       this.shopperInformationService.setInformation(true, this.id, this.id, this.id);
+      this.storeInformationService.update();
     }
 
     this.authGuardService.setLogIn();
