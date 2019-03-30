@@ -6,16 +6,18 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
+import { SignUpShopperComponent } from './sign-up-shopper/sign-up-shopper.component';
 
 const appRoutes: Routes = [{
   path: '', component: PreLoginComponent, children: [
     { path: 'login', component: LoginComponent },
-    { path: 'sign-up', component: SignUpComponent }
+    { path: 'sign-up', component: SignUpComponent },
+    { path: 'sign-up-shopper', component: SignUpShopperComponent }
   ]
 }];
 
 @NgModule({
-  declarations: [PreLoginComponent, LoginComponent, SignUpComponent],
+  declarations: [PreLoginComponent, LoginComponent, SignUpComponent, SignUpShopperComponent],
   imports: [
     CommonModule,
     FormsModule,

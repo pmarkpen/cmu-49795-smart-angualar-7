@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ShopperInformationService } from '../../shopper-information.service';
 import { StoreInformationService } from '../../store-information.service';
 import { AuthGuardService } from '../../auth-guard.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private shopperInformationService: ShopperInformationService,
     private storeInformationService: StoreInformationService,
-  private authGuardService: AuthGuardService) {
+    private authGuardService: AuthGuardService,
+    private http: HttpClient) {
 
   }
 
@@ -47,17 +49,35 @@ export class LoginComponent implements OnInit {
     sessionStorage.clear();
 
     if (this.isStore) {
-      this.storeInformationService.setInformation(true, this.id, this.id);
-      this.shopperInformationService.update();
+      this.http.post(`http://localhost:3000/signin-store`, {
+        storeID: this.id,
+        password: this.password
+      }).subscribe((response: LogInShopperResponse) => {
+        this.storeInformationService.setInformation(true, response.result.storeID, response.result.storeName);
+        this.shopperInformationService.update();
+        this.authGuardService.setLogIn();
+        this.router.navigateByUrl("/after-login/home");
+      }, (err) => {
+        alert(err.error.errors.reduce((previousValue, currentValue) => {
+          return `${previousValue}, ${currentValue}`
+        }));
+      });
     } else {
       this.shopperInformationService.setInformation(true, this.id, this.id, this.id);
       this.storeInformationService.update();
     }
-
-    this.authGuardService.setLogIn();
-    this.router.navigateByUrl("/after-login/home")
   }
 
 
 
+}
+
+interface LogInShopperResponse {
+  "status": string,
+  "result": {
+    "id": string,
+    "storeID": string,
+    "storeName": string,
+    "storeDescription": string
+  }
 }
