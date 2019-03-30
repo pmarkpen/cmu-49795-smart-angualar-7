@@ -4,21 +4,27 @@ import { PreLoginComponent } from './pre-login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
 
 const appRoutes: Routes = [{
   path: '', component: PreLoginComponent, children: [
-    { path: 'login', component: LoginComponent }
+    { path: 'login', component: LoginComponent },
+    { path: 'sign-up', component: SignUpComponent }
   ]
 }];
 
 @NgModule({
-  declarations: [PreLoginComponent, LoginComponent],
+  declarations: [PreLoginComponent, LoginComponent, SignUpComponent],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(
       appRoutes
-    )
+    ),
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
   ]
 })
 export class PreLoginModule { }

@@ -10,6 +10,7 @@ export class StoreInformationService {
   storeName: string;
   constructor() { 
     this.isStore = false;
+    this.update();
   }
 
   update() {

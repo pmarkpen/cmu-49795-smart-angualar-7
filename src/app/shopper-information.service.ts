@@ -11,6 +11,7 @@ export class ShopperInformationService {
   lastName: string;
   constructor() {
     this.isShopper = false;
+    this.update();
   }
 
   update() {
