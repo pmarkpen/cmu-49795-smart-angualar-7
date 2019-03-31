@@ -67,6 +67,10 @@ export class SignUpComponent implements OnInit {
     return value === undefined || value === "";
   }
 
+  onClickCancel() {
+    this.route.navigateByUrl("/pre-login/login")
+  }
+
 
 
 

@@ -80,7 +80,17 @@ export class LoginComponent implements OnInit {
   }
 
 
+  get mode() {
+    return this.isStore ? "Store" : "Shopper"
+  }
 
+  get oppositeMode() {
+    return this.isStore ? "Shopper" : "Store"
+  }
+
+  getOppositeURL() {
+    return `/pre-login/login?${this.isStore ? "shopper" : "store"}`;
+  }
 }
 
 interface LogInStoreResponse {

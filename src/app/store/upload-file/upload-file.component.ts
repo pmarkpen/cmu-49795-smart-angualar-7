@@ -51,7 +51,7 @@ export class UploadFileComponent implements OnInit {
   }
 
   onClickNext() {
-    this.router.navigateByUrl(`/store/store-association-result`);
+    this.router.navigateByUrl(`/after-login/store/store-association-result`);
   }
 
   uploadFileToFirebase(): Observable<string> {
