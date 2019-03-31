@@ -13,4 +13,17 @@
   svg {
     width: 100%;
     height: 80%;
+    position: absolute;
+  }
+
+  .welcome-container {
+    height: 60%;
+    text-align: center;
+    color: #212020;
+  }
+
+  h1 {
+    font-weight: 100;
+    font-size: 5rem;
+    text-shadow: #ff7177 1px 0 10px;
   }
