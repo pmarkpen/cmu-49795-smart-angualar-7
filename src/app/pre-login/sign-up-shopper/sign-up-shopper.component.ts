@@ -66,7 +66,7 @@ export class SignUpShopperComponent implements OnInit {
   }
 
   onClickCancel() {
-    this.route.navigateByUrl("/pre-login/login")
+    this.route.navigateByUrl("/pre-login/login?shopper=")
   }
 
 
