@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       this.http.post(`http://localhost:3000/signin-store`, {
         storeID: this.id,
         password: this.password
-      }).subscribe((response: LogInShopperResponse) => {
+      }).subscribe((response: LogInStoreResponse) => {
         this.storeInformationService.setInformation(true, response.result.storeID, response.result.storeName);
         this.shopperInformationService.update();
         this.authGuardService.setLogIn();
@@ -63,8 +63,19 @@ export class LoginComponent implements OnInit {
         }));
       });
     } else {
-      this.shopperInformationService.setInformation(true, this.id, this.id, this.id);
-      this.storeInformationService.update();
+      this.http.post(`http://localhost:3000/signin-shopper`, {
+        shopperID: this.id,
+        password: this.password
+      }).subscribe((response: LogInShopperResponse) => {
+        this.shopperInformationService.setInformation(true, response.result.shopperID, response.result.firstName, response.result.lastName);
+        this.storeInformationService.update();
+        this.authGuardService.setLogIn();
+        this.router.navigateByUrl("/after-login/home");
+      }, (err) => {
+        alert(err.error.errors.reduce((previousValue, currentValue) => {
+          return `${previousValue}, ${currentValue}`
+        }));
+      });
     }
   }
 
@@ -72,12 +83,22 @@ export class LoginComponent implements OnInit {
 
 }
 
-interface LogInShopperResponse {
+interface LogInStoreResponse {
   "status": string,
   "result": {
     "id": string,
     "storeID": string,
     "storeName": string,
     "storeDescription": string
+  }
+}
+
+interface LogInShopperResponse {
+  "status": string,
+  "result": {
+    "id": string,
+    "shopperID": string,
+    "firstName": string,
+    "lastName": string
   }
 }
