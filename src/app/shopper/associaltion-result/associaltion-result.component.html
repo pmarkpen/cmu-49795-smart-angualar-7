@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12">
-        <h3>Here is products people at {{storeName}} usually buy with {{productId}}!</h3>
+        <h3>Here are products people at {{storeName}} usually buy with {{productId}}!</h3>
     </div>
     <div class="col-12 ">
         <mat-selection-list #products class="result-table">
@@ -10,7 +10,7 @@
                         {{product.name}}
                     </div>
                     <div class="confidence">
-                        {{product.support}} % of confidence
+                        {{product.support}} % of customers bought this product with {{productId}}. 
                     </div>
                 </div>
 

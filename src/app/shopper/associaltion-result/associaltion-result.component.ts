@@ -59,7 +59,14 @@ export class AssocialtionResultComponent implements OnInit {
     let selectedOptions = this.products.selectedOptions.selected.map(item => item.value);
     for (let i = 0; i < selectedOptions.length; i++) {
       const result = await this.saveVirtualCartItem(selectedOptions[i]);
+      this.productList = this.productList.filter((item) => {
+        return item.name != selectedOptions[i];
+      });
     };
+
+    alert("Items were added successfully!");
+
+    
   }
 
   saveVirtualCartItem(productName: string) {
