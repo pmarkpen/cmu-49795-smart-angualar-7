@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-12">
-        <h3>Here is products people at SafeWay usually buy with {{productId}}!</h3>
+        <h3>Here is products people at {{storeId}} usually buy with {{productId}}!</h3>
     </div>
     <div class="col-12 ">
         <mat-selection-list #products class="result-table">
-            <mat-list-option *ngFor="let product of productList">
+            <mat-list-option *ngFor="let product of productList" [value]="product.name">
                 <div>
                     <div class="name">
                         {{product.name}}
@@ -23,6 +23,6 @@
 </div>
 <div class="row action-panel">
     <div class="col-12">
-        <button mat-raised-button color="accent"> <i class="fas fa-cart-plus"></i> Add {{products.selectedOptions.selected.length}} Items to your virtual cart!</button>
+        <button mat-raised-button color="accent" (click)="addItemsToCart()"> <i class="fas fa-cart-plus"></i> Add {{products.selectedOptions.selected.length}} Items to your virtual cart!</button>
     </div>
 </div>

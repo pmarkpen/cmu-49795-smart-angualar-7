@@ -21,6 +21,7 @@ import * as firebase from 'firebase';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { CommonModule } from '@angular/common';
 import { AuthGuardService } from './auth-guard.service';
+import { VirtualCartComponent } from './shopper/virtual-cart/virtual-cart.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/pre-login/login', pathMatch: 'full' },
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     TestComponent,
+    VirtualCartComponent,
   ],
   imports: [
     BrowserModule,

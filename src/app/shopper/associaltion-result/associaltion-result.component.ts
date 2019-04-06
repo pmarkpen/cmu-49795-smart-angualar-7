@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import AssociatedProductItem from './model/associated-product-item';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import AssociatedProductItemResponse from './model/associated-product-item-response';
+import { ShopperInformationService } from '../../shopper-information.service';
 
 @Component({
   selector: 'app-associaltion-result',
@@ -10,10 +11,11 @@ import AssociatedProductItemResponse from './model/associated-product-item-respo
   styleUrls: ['./associaltion-result.component.scss']
 })
 export class AssocialtionResultComponent implements OnInit {
+  @ViewChild("products") products: any;
   productId: string;
   storeId: string;
   productList: AssociatedProductItem[];
-  constructor(private route: ActivatedRoute, private http: HttpClient) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private shopperInformationService: ShopperInformationService) {
     this.productList = [];
 
   }
@@ -43,6 +45,26 @@ export class AssocialtionResultComponent implements OnInit {
         product.support = item.support;
         this.productList.push(product);
       });
+    });
+  }
+
+  async addItemsToCart() {
+    let selectedOptions = this.products.selectedOptions.selected.map(item => item.value);
+    for (let i = 0; i < selectedOptions.length; i++) {
+      const result = await this.saveVirtualCartItem(selectedOptions[i]);
+    };
+  }
+
+  saveVirtualCartItem(productName: string) {
+    this.http.post(`http://localhost:3000/api/virtual-cart/${this.shopperInformationService.shopperId}}`, {
+      item: {
+        productName: productName,
+        storeName: this.storeId
+      }
+    }).subscribe((response: any) => {
+      return;
+    }, (err) => {
+      alert(`Cannot add ${productName}, ${err.error.errors[0]}`)
     });
   }
 
