@@ -14,6 +14,7 @@ export class AssocialtionResultComponent implements OnInit {
   @ViewChild("products") products: any;
   productId: string;
   storeId: string;
+  storeName: string;
   productList: AssociatedProductItem[];
   constructor(private route: ActivatedRoute, private http: HttpClient, private shopperInformationService: ShopperInformationService) {
     this.productList = [];
@@ -23,6 +24,7 @@ export class AssocialtionResultComponent implements OnInit {
   ngOnInit() {
     this.productId = this.route.snapshot.paramMap.get("productId");
     this.storeId = this.route.snapshot.paramMap.get("storeId");
+    this.fetchStoreInformation();
     this.fetchAssociationResult();
   }
 
@@ -48,6 +50,11 @@ export class AssocialtionResultComponent implements OnInit {
     });
   }
 
+  fetchStoreInformation() {
+    this.http.get(`http://localhost:3000/api/store-info/${this.storeId}`).subscribe((response: StoreInformationResponse) => {
+      this.storeName = response.result.requests.storeName;
+    });
+  }
   async addItemsToCart() {
     let selectedOptions = this.products.selectedOptions.selected.map(item => item.value);
     for (let i = 0; i < selectedOptions.length; i++) {
@@ -59,7 +66,7 @@ export class AssocialtionResultComponent implements OnInit {
     this.http.post(`http://localhost:3000/api/virtual-cart/${this.shopperInformationService.shopperId}}`, {
       item: {
         productName: productName,
-        storeName: this.storeId
+        storeName: this.storeName
       }
     }).subscribe((response: any) => {
       return;
@@ -68,4 +75,16 @@ export class AssocialtionResultComponent implements OnInit {
     });
   }
 
+}
+
+interface StoreInformationResponse {
+  "status": string,
+  "result": {
+    "requests": {
+      "id": string,
+      "storeID": string,
+      "storeName": string,
+      "storeDescription": string
+    }
+  }
 }
