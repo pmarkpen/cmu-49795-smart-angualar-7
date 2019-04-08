@@ -21,9 +21,19 @@ export class VirtualCartComponent implements OnInit {
     return this.http.get(`http://localhost:3000/api/virtual-cart/${this.shopperInformationService.shopperId}`) as Observable<GetVirtualCartResponse>; 
   }
 
+  removeVirtualCart(productName: string): Observable<GetVirtualCartResponse> {
+    return this.http.delete(`http://localhost:3000/api/virtual-cart/${this.shopperInformationService.shopperId}/${productName}`) as Observable<GetVirtualCartResponse>; 
+  }
+
   initializeTheTable() {
     this.fetchVirtualCart().subscribe((result: GetVirtualCartResponse) => {
       this.items = result.result.requests;
+    });
+  }
+
+  removeItem(item: GetVirtualCartResponseItem) {
+    this.removeVirtualCart(item.productName).subscribe(() => {
+      this.initializeTheTable();
     });
   }
 }
@@ -40,4 +50,5 @@ interface GetVirtualCartResponseItem {
   "shopperID": string;
   "productName": string;
   "storeName": string;
+
 }

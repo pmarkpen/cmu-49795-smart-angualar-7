@@ -16,6 +16,16 @@
 }
 
 .table-row {
+    padding: 15px;
+    padding-top: 0px;
     max-height: 70%;
     overflow-y: auto;
+}
+
+.remove {
+    cursor: pointer;
+}
+
+.remove:hover {
+    color: red;
 }

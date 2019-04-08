@@ -19,7 +19,7 @@
         <div class="col-4">{{item.productName}}</div>
         <div class="col-3">{{item.storeName}}</div>
         <div class="col-3">{{item.buyWithProductName}}</div>
-        <div class="col-2">Remove</div>
+        <div class="col-2 remove" (click)="removeItem(item)"><i class="far fa-trash-alt"></i></div>
       </div>
     </div>
 </div>
