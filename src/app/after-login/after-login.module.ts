@@ -14,12 +14,14 @@ import { MatCardModule, MatButtonModule, MatListModule, MatTableModule, MatSortM
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { VirtualCartComponent } from '../shopper/virtual-cart/virtual-cart.component';
 
 const appRoutes: Routes = [{
   path: '', component: AfterLoginComponent, children: [
     { path: 'home', component: DashBoardComponent  },
     { path: 'shopper/select-item', component: SelectItemComponent },
     { path: 'shopper/association-result/:storeId/:productId', component: AssocialtionResultComponent },
+    { path: 'shopper/virtual-cart', component: VirtualCartComponent },
     { path: 'store/upload-file', component: UploadFileComponent },
     { path: 'store/store-association-result', component: StoreAssociationResultComponent },
   ]
@@ -35,7 +37,8 @@ const appRoutes: Routes = [{
     UploadFileComponent,
     StoreAssociationResultComponent,
     MyFilterPipe,
-    DashBoardComponent],
+    DashBoardComponent,
+    VirtualCartComponent],
   imports: [
     CommonModule,
     FormsModule,
