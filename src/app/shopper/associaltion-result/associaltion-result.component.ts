@@ -70,10 +70,11 @@ export class AssocialtionResultComponent implements OnInit {
   }
 
   saveVirtualCartItem(productName: string) {
-    this.http.post(`http://localhost:3000/api/virtual-cart/${this.shopperInformationService.shopperId}}`, {
+    this.http.post(`http://localhost:3000/api/virtual-cart/${this.shopperInformationService.shopperId}`, {
       item: {
         productName: productName,
-        storeName: this.storeName
+        storeName: this.storeName,
+        buyWithProductName: this.productId
       }
     }).subscribe((response: any) => {
       return;
