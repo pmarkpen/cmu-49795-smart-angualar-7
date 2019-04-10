@@ -3,6 +3,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { HttpClient } from '@angular/common/http'
 import { Article } from '../model/article';
 import { StoreInformationService } from '../../store-information.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-store-association-result',
@@ -35,7 +36,7 @@ export class StoreAssociationResultComponent implements OnInit {
 
   public fetchResult() {
 
-    this.httpClient.get(`http://localhost:3000/api/association/${this.storeInformationService.storeId}/`).subscribe((response: FetchStoreAssociationResponse) => {
+    this.httpClient.get(`http://${environment.host}/api/association/${this.storeInformationService.storeId}/`).subscribe((response: FetchStoreAssociationResponse) => {
       let result: Article[] = [];
       response.result.requests.forEach(element => {
         if (element.length > 1) {

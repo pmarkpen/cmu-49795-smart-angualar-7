@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShopperInformationService } from '../../shopper-information.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-virtual-cart',
@@ -18,11 +19,11 @@ export class VirtualCartComponent implements OnInit {
   }
 
   fetchVirtualCart(): Observable<GetVirtualCartResponse> {
-    return this.http.get(`http://localhost:3000/api/virtual-cart/${this.shopperInformationService.shopperId}`) as Observable<GetVirtualCartResponse>; 
+    return this.http.get(`http://${environment.host}/api/virtual-cart/${this.shopperInformationService.shopperId}`) as Observable<GetVirtualCartResponse>; 
   }
 
   removeVirtualCart(productName: string): Observable<GetVirtualCartResponse> {
-    return this.http.delete(`http://localhost:3000/api/virtual-cart/${this.shopperInformationService.shopperId}/${productName}`) as Observable<GetVirtualCartResponse>; 
+    return this.http.delete(`http://${environment.host}/api/virtual-cart/${this.shopperInformationService.shopperId}/${productName}`) as Observable<GetVirtualCartResponse>; 
   }
 
   initializeTheTable() {

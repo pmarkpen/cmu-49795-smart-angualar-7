@@ -4,6 +4,7 @@ import { ShopperInformationService } from '../../shopper-information.service';
 import { StoreInformationService } from '../../store-information.service';
 import { AuthGuardService } from '../../auth-guard.service';
 import { HttpClient } from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
     sessionStorage.clear();
 
     if (this.isStore) {
-      this.http.post(`http://localhost:3000/signin-store`, {
+      this.http.post(`http://${environment.host}/signin-store`, {
         storeID: this.id,
         password: this.password
       }).subscribe((response: LogInStoreResponse) => {
@@ -63,7 +64,7 @@ export class LoginComponent implements OnInit {
         }));
       });
     } else {
-      this.http.post(`http://localhost:3000/signin-shopper`, {
+      this.http.post(`http://${environment.host}/signin-shopper`, {
         shopperID: this.id,
         password: this.password
       }).subscribe((response: LogInShopperResponse) => {

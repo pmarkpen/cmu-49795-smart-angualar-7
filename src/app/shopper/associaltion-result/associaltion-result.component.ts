@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import AssociatedProductItemResponse from './model/associated-product-item-response';
 import { ShopperInformationService } from '../../shopper-information.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-associaltion-result',
@@ -29,7 +30,7 @@ export class AssocialtionResultComponent implements OnInit {
   }
 
   fetchAssociationResult() {
-    this.http.get(`http://localhost:3000/api/association/${this.storeId}/${this.productId}`).subscribe((response: AssociatedProductItemResponse) => {
+    this.http.get(`http://${environment.host}/api/association/${this.storeId}/${this.productId}`).subscribe((response: AssociatedProductItemResponse) => {
       response.result.requests.forEach((item) => {
         let product: AssociatedProductItem = new AssociatedProductItem();
         product.name = "";
@@ -51,7 +52,7 @@ export class AssocialtionResultComponent implements OnInit {
   }
 
   fetchStoreInformation() {
-    this.http.get(`http://localhost:3000/api/store-info/${this.storeId}`).subscribe((response: StoreInformationResponse) => {
+    this.http.get(`http://${environment.host}/api/store-info/${this.storeId}`).subscribe((response: StoreInformationResponse) => {
       this.storeName = response.result.requests.storeName;
     });
   }
@@ -70,7 +71,7 @@ export class AssocialtionResultComponent implements OnInit {
   }
 
   saveVirtualCartItem(productName: string) {
-    this.http.post(`http://localhost:3000/api/virtual-cart/${this.shopperInformationService.shopperId}`, {
+    this.http.post(`http://${environment.host}/api/virtual-cart/${this.shopperInformationService.shopperId}`, {
       item: {
         productName: productName,
         storeName: this.storeName,

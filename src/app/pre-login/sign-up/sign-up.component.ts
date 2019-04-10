@@ -3,6 +3,7 @@ import { MatFormFieldControl } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-sign-up',
@@ -47,7 +48,7 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    this.http.post(`http://localhost:3000/signup-store`, {
+    this.http.post(`http://${environment.host}/signup-store`, {
       storeID: this.storeId,
       password: this.password,
       name: this.storeName,

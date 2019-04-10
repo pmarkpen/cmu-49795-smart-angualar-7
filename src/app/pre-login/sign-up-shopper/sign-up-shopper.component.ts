@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-sign-up-shopper',
@@ -45,7 +46,7 @@ export class SignUpShopperComponent implements OnInit {
       return;
     }
 
-    this.http.post(`http://localhost:3000/signup-shopper`, {
+    this.http.post(`http://${environment.host}/signup-shopper`, {
       shopperID: this.shopperId,
       password: this.password,
       firstName: this.firstName,

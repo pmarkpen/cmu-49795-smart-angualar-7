@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import FetchStoreResponse from './model/fetch-store-response';
 import FetchProductResponse from './model/fetch-product-response';
+import {environment} from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-select-item',
@@ -23,7 +25,7 @@ export class SelectItemComponent implements OnInit {
   }
 
   fetchStores() {
-    this.http.get(`http://localhost:3000/api/stores`).subscribe((response: FetchStoreResponse) => {
+    this.http.get(`http://${environment.host}/api/stores`).subscribe((response: FetchStoreResponse) => {
       response.result.requests.forEach((s) => {
         let store = new StoreItem();
         store.id = s.storeID;
@@ -36,7 +38,7 @@ export class SelectItemComponent implements OnInit {
 
   fetchProducts(storeId: string) {
     this.productList = [];
-    this.http.get(`http://localhost:3000/api/stores/${storeId}`).subscribe((response: FetchProductResponse) => {
+    this.http.get(`http://${environment.host}/api/stores/${storeId}`).subscribe((response: FetchProductResponse) => {
       if(response.result.requests.length >= 1) {
         response.result.requests[0].products.sort();
         response.result.requests[0].products.forEach((uniqueProductName) => {
