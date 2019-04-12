@@ -15,6 +15,8 @@ export class PopularProductComponent implements OnInit {
   productList = [];
   filterValue: string;
   @ViewChild('myChart') myChart;
+  @ViewChild('myDatepicker') fromDatepicker;
+  @ViewChild('toDatepicker') toDatepicker;
 
   constructor(private http: HttpClient, private storeInformationService: StoreInformationService) { }
 
@@ -60,13 +62,11 @@ export class PopularProductComponent implements OnInit {
                 left: 0,
                 right: 0,
                 top: 0,
-                bottom: 50
+                bottom: 100
             }
         }
       }
     });
   }
-
-
 
 }

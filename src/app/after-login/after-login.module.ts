@@ -10,7 +10,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { PickStoreItemComponent } from '../shopper/select-item/pick-store/pick-store-item/pick-store-item.component';
 import { SelectProductComponent } from '../shopper/select-item/select-product/select-product.component';
 import { MyFilterPipe } from '../filter';
-import { MatCardModule, MatButtonModule, MatListModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatListModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -54,7 +55,10 @@ const appRoutes: Routes = [{
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatMomentDateModule
   ]
 })
 export class AfterLoginModule { }
