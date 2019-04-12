@@ -16,11 +16,12 @@ import { MatDatepickerInputEvent } from '@angular/material';
 export class PopularProductComponent implements OnInit {
   productList: Product[] = [];
   filterValue: string;
-  fromDate: Date = new Date(2000, 0, 1);
-  toDate: Date = new Date(2020, 0, 1);
+  fromDate: any = new Date(2000, 0, 1);
+  toDate: any = new Date(2020, 0, 1);
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(2020, 0, 1);
   selectedProduct: Product;
+  myLineChart;
 
   @ViewChild('myChart') myChart;
   @ViewChild('myDatepicker') fromDatepicker;
@@ -69,7 +70,13 @@ export class PopularProductComponent implements OnInit {
   }
 
   drawChart() {
-    this.fetchChartData(this.storeInformationService.storeId, this.selectedProduct.name, this.getFormattedDate(this.fromDate), this.getFormattedDate(this.toDate)).subscribe((result) => {
+    if(this.myLineChart) {
+      this.myLineChart.destroy();
+    }
+
+    let fromDate = this.fromDate instanceof Date ? this.getFormattedDate(this.fromDate) : this.fromDate.format('MM/DD/YYYY');
+    let toDate = this.toDate instanceof Date ? this.getFormattedDate(this.toDate) : this.toDate.format('MM/DD/YYYY');
+    this.fetchChartData(this.storeInformationService.storeId, this.selectedProduct.name, fromDate, toDate).subscribe((result) => {
         let labels = [];
         let date = [];
 
@@ -81,12 +88,15 @@ export class PopularProductComponent implements OnInit {
         let data = {
           labels: labels,
           datasets: [{
-            label: `${this.selectedProduct.name} from ${this.getFormattedDate(this.fromDate)} to ${this.getFormattedDate(this.toDate)} dataset`,
-            data: date
+            label: `${this.selectedProduct.name} from ${fromDate} to ${toDate} dataset`,
+            data: date,
+            backgroundColor: [
+              "#f38b4a"
+            ]
           }]
         };
     
-        var myLineChart = new Chart(this.myChart.nativeElement, {
+        this.myLineChart = new Chart(this.myChart.nativeElement, {
           type: 'line',
           data: data,
           options: {
@@ -114,6 +124,12 @@ export class PopularProductComponent implements OnInit {
   }
 
   onChange($event) {
+    this.drawChart();
+  }
+
+  reset() {
+    this.fromDate = this.minDate;
+    this.toDate = this.maxDate;
     this.drawChart();
   }
 

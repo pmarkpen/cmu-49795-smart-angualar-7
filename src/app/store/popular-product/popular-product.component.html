@@ -27,8 +27,8 @@
         From:
         <span>
           <mat-form-field>
-            <input matInput [(ngModel)]="fromDate" [min]="minDate" [max]="maxDate" [matDatepicker]="fromDatepicker"
-            (ngModelChange)="onChange($event)"
+            <input matInput [(ngModel)]="fromDate"  (ngModelChange)="onChange($event)" [min]="minDate" [max]="maxDate" [matDatepicker]="fromDatepicker"
+       
             >
             <mat-datepicker-toggle matSuffix [for]="fromDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #fromDatepicker></mat-datepicker>
@@ -39,16 +39,14 @@
         To:
         <span>
           <mat-form-field>
-            <input matInput [(ngModel)]="toDate" [min]="minDate" [max]="maxDate" [matDatepicker]="toDatepicker"
-            (ngModelChange)="onChange($event)"
-            >
+            <input matInput [(ngModel)]="toDate"  (ngModelChange)="onChange($event)" [min]="minDate" [max]="maxDate" [matDatepicker]="toDatepicker">
             <mat-datepicker-toggle matSuffix [for]="toDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #toDatepicker></mat-datepicker>
           </mat-form-field>
         </span>
       </div>
       <div class="col-4">
-          <button mat-raised-button color="accent" (click)="onChange()">Update</button>
+          <button mat-raised-button  (click)="reset()">reset</button>
       </div>
     </div>
     <div class="row">
