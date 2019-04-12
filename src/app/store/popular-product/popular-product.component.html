@@ -24,7 +24,7 @@
         From:
         <span>
           <mat-form-field>
-            <input matInput [matDatepicker]="fromDatepicker">
+            <input matInput [(ngModel)]="fromDate" [min]="minDate" [max]="maxDate" [matDatepicker]="fromDatepicker">
             <mat-datepicker-toggle matSuffix [for]="fromDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #fromDatepicker></mat-datepicker>
           </mat-form-field>
@@ -34,7 +34,7 @@
         To:
         <span>
           <mat-form-field>
-            <input matInput [matDatepicker]="toDatepicker">
+            <input matInput [(ngModel)]="toDate" [min]="minDate" [max]="maxDate" [matDatepicker]="toDatepicker">
             <mat-datepicker-toggle matSuffix [for]="toDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #toDatepicker></mat-datepicker>
           </mat-form-field>

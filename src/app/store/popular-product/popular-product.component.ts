@@ -14,6 +14,10 @@ import Chart from 'chart.js';
 export class PopularProductComponent implements OnInit {
   productList = [];
   filterValue: string;
+  fromDate: Date = new Date(2000, 0, 1);
+  toDate: Date = new Date(2020, 0, 1);
+  minDate = new Date(2000, 0, 1);
+  maxDate = new Date(2020, 0, 1);
   @ViewChild('myChart') myChart;
   @ViewChild('myDatepicker') fromDatepicker;
   @ViewChild('toDatepicker') toDatepicker;
@@ -23,6 +27,7 @@ export class PopularProductComponent implements OnInit {
   ngOnInit() {
     this.fetchProducts(this.storeInformationService.storeId);
     this.drawChart();
+    this.fetchMinMaxDate(this.storeInformationService.storeId);
   }
 
   fetchProducts(storeId: string) {
@@ -36,6 +41,15 @@ export class PopularProductComponent implements OnInit {
           this.productList.push(pItem);
         });
       }
+    });
+  }
+
+  fetchMinMaxDate(storeId: string) {
+    this.http.get(`http://${environment.host}/api/store-info/${storeId}?getMinMax=true`).subscribe((response: MinMaxInvoiceDateResponse) => {
+      this.minDate = new Date(response.result.requests.minDate);
+      this.maxDate = new Date(response.result.requests.maxDate);
+      this.fromDate = new Date(response.result.requests.minDate);
+      this.toDate = new Date(response.result.requests.maxDate);
     });
   }
 
@@ -58,15 +72,26 @@ export class PopularProductComponent implements OnInit {
       data: data,
       options: {
         layout: {
-            padding: {
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 100
-            }
+          padding: {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 100
+          }
         }
       }
     });
   }
 
+}
+
+
+interface MinMaxInvoiceDateResponse {
+  "status": string,
+  "result": {
+    "requests": {
+      "minDate": number,
+      "maxDate": number
+    }
+  }
 }
