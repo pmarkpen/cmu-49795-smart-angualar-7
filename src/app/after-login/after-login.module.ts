@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { VirtualCartComponent } from '../shopper/virtual-cart/virtual-cart.component';
+import {PopularProductComponent} from '../store/popular-product/popular-product.component';
 
 const appRoutes: Routes = [{
   path: '', component: AfterLoginComponent, children: [
@@ -24,6 +25,7 @@ const appRoutes: Routes = [{
     { path: 'shopper/virtual-cart', component: VirtualCartComponent },
     { path: 'store/upload-file', component: UploadFileComponent },
     { path: 'store/store-association-result', component: StoreAssociationResultComponent },
+    { path: 'store/store-popular', component: PopularProductComponent },
   ]
 }];
 
@@ -38,7 +40,8 @@ const appRoutes: Routes = [{
     StoreAssociationResultComponent,
     MyFilterPipe,
     DashBoardComponent,
-    VirtualCartComponent],
+    VirtualCartComponent,
+    PopularProductComponent],
   imports: [
     CommonModule,
     FormsModule,

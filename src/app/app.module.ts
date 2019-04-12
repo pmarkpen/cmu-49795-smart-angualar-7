@@ -38,7 +38,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

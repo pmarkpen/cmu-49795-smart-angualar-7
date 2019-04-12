@@ -1,0 +1,15 @@
+.product-panel {
+    height: 70%;
+    overflow-y: auto;
+    margin-top:20px;
+
+    & div {
+        padding-right:10px;
+        margin-top:5px;
+        margin-bottom: 5px;
+        cursor: pointer;
+        &:hover {
+            color: red;
+        }
+    }
+}
