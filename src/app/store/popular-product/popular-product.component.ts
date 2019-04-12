@@ -5,6 +5,8 @@ import FetchProductResponse from '../../shopper/select-item/model/fetch-product-
 import { environment } from '../../../environments/environment';
 import { StoreInformationService } from '../../store-information.service';
 import Chart from 'chart.js';
+import { Observable } from 'rxjs';
+import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
   selector: 'app-popular-product',
@@ -12,12 +14,14 @@ import Chart from 'chart.js';
   styleUrls: ['./popular-product.component.scss']
 })
 export class PopularProductComponent implements OnInit {
-  productList = [];
+  productList: Product[] = [];
   filterValue: string;
   fromDate: Date = new Date(2000, 0, 1);
   toDate: Date = new Date(2020, 0, 1);
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(2020, 0, 1);
+  selectedProduct: Product;
+
   @ViewChild('myChart') myChart;
   @ViewChild('myDatepicker') fromDatepicker;
   @ViewChild('toDatepicker') toDatepicker;
@@ -26,7 +30,6 @@ export class PopularProductComponent implements OnInit {
 
   ngOnInit() {
     this.fetchProducts(this.storeInformationService.storeId);
-    this.drawChart();
     this.fetchMinMaxDate(this.storeInformationService.storeId);
   }
 
@@ -53,34 +56,65 @@ export class PopularProductComponent implements OnInit {
     });
   }
 
+  fetchChartData(storeId: string, productId: String, fromDate: string, toDate: string) {
+    return this.http.get(`http://${environment.host}/api/store-info/${storeId}/${productId}?fromDate=${fromDate}&toDate=${toDate}`) as Observable<ProductTrendsResponse>;
+  }
+
   doFilter(value: string) {
     this.filterValue = value;
   }
 
+  getFormattedDate(date: Date) {
+    return `${date.getMonth()+1}/${date.getDay()}/${date.getFullYear()}`;
+  }
 
   drawChart() {
-    let data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [{
-        label: 'My First dataset',
-        data: [0, 1, 2, 3, 4, 5, 6]
-      }]
-    };
+    this.fetchChartData(this.storeInformationService.storeId, this.selectedProduct.name, this.getFormattedDate(this.fromDate), this.getFormattedDate(this.toDate)).subscribe((result) => {
+        let labels = [];
+        let date = [];
 
-    var myLineChart = new Chart(this.myChart.nativeElement, {
-      type: 'line',
-      data: data,
-      options: {
-        layout: {
-          padding: {
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 100
+        result.result.requests.result.forEach((item) => {
+          labels.push(item.date);
+          date.push(item.quantity);
+        });
+
+        let data = {
+          labels: labels,
+          datasets: [{
+            label: `${this.selectedProduct.name} from ${this.getFormattedDate(this.fromDate)} to ${this.getFormattedDate(this.toDate)} dataset`,
+            data: date
+          }]
+        };
+    
+        var myLineChart = new Chart(this.myChart.nativeElement, {
+          type: 'line',
+          data: data,
+          options: {
+            layout: {
+              padding: {
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 100
+              }
+            },
+            spanGaps: false
           }
-        }
-      }
+        });
     });
+  }
+
+  onSelectProduct(product: Product) {
+    this.selectedProduct = product;
+    this.drawChart();
+  }
+
+  isProductClicked(product: Product) {
+    return product === this.selectedProduct;
+  }
+
+  onChange($event) {
+    this.drawChart();
   }
 
 }
@@ -94,4 +128,18 @@ interface MinMaxInvoiceDateResponse {
       "maxDate": number
     }
   }
+}
+
+interface ProductTrendsResponse {
+  "status": string,
+  "result": {
+    "requests": {
+      "result": ProductTrendsResponseItem[]
+    }
+  }
+}
+
+interface ProductTrendsResponseItem {
+  "date": string,
+  "quantity": number
 }

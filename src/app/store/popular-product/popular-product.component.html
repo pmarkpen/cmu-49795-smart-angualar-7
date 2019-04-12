@@ -13,32 +13,42 @@
       </div>
     </div>
     <div class="row product-panel">
-      <div class="col-12" *ngFor="let p of productList | myfilter:filterValue">
+      <div class="col-12" *ngFor="let p of productList | myfilter:filterValue"
+        (click)="onSelectProduct(p)"
+        [ngClass]="{'selected': isProductClicked(p)}"
+      >
         {{p.name}}
       </div>
     </div>
   </div>
   <div class="col-8 chart">
     <div class="row">
-      <div class="col-6">
+      <div class="col-4">
         From:
         <span>
           <mat-form-field>
-            <input matInput [(ngModel)]="fromDate" [min]="minDate" [max]="maxDate" [matDatepicker]="fromDatepicker">
+            <input matInput [(ngModel)]="fromDate" [min]="minDate" [max]="maxDate" [matDatepicker]="fromDatepicker"
+            (ngModelChange)="onChange($event)"
+            >
             <mat-datepicker-toggle matSuffix [for]="fromDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #fromDatepicker></mat-datepicker>
           </mat-form-field>
         </span>
       </div>
-      <div class="col-6">
+      <div class="col-4">
         To:
         <span>
           <mat-form-field>
-            <input matInput [(ngModel)]="toDate" [min]="minDate" [max]="maxDate" [matDatepicker]="toDatepicker">
+            <input matInput [(ngModel)]="toDate" [min]="minDate" [max]="maxDate" [matDatepicker]="toDatepicker"
+            (ngModelChange)="onChange($event)"
+            >
             <mat-datepicker-toggle matSuffix [for]="toDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #toDatepicker></mat-datepicker>
           </mat-form-field>
         </span>
+      </div>
+      <div class="col-4">
+          <button mat-raised-button color="accent" (click)="onChange()">Update</button>
       </div>
     </div>
     <div class="row">

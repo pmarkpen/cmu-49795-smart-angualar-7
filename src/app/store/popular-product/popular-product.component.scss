@@ -11,5 +11,8 @@
         &:hover {
             color: red;
         }
+        &.selected {
+            color: #9e0606;
+        }
     }
 }
