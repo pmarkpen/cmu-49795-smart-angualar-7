@@ -23,6 +23,7 @@
     "@angular/router": "~7.2.0",
     "aws-sdk": "^2.417.0",
     "bootstrap": "^4.3.1",
+    "chart.js": "^2.8.0",
     "core-js": "^2.5.4",
     "d3": "^4.10.2",
     "express": "^4.16.4",
