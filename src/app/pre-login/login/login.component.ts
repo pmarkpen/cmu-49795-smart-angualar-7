@@ -4,7 +4,7 @@ import { ShopperInformationService } from '../../shopper-information.service';
 import { StoreInformationService } from '../../store-information.service';
 import { AuthGuardService } from '../../auth-guard.service';
 import { HttpClient } from '@angular/common/http';
-import {environment} from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -59,9 +59,13 @@ export class LoginComponent implements OnInit {
         this.authGuardService.setLogIn();
         this.router.navigateByUrl("/after-login/home");
       }, (err) => {
-        alert(err.error.errors.reduce((previousValue, currentValue) => {
-          return `${previousValue}, ${currentValue}`
-        }));
+        if (err.error.errors != undefined) {
+          alert(err.error.errors.reduce((previousValue, currentValue) => {
+            return `${previousValue}, ${currentValue}`
+          }));
+        } else {
+          alert("Connection Error: the server is offline");
+        }
       });
     } else {
       this.http.post(`http://${environment.host}/signin-shopper`, {
@@ -73,9 +77,13 @@ export class LoginComponent implements OnInit {
         this.authGuardService.setLogIn();
         this.router.navigateByUrl("/after-login/home");
       }, (err) => {
-        alert(err.error.errors.reduce((previousValue, currentValue) => {
-          return `${previousValue}, ${currentValue}`
-        }));
+        if (err.error.errors != undefined) {
+          alert(err.error.errors.reduce((previousValue, currentValue) => {
+            return `${previousValue}, ${currentValue}`
+          }));
+        } else {
+          alert("Connection Error: the server is offline");
+        }
       });
     }
   }
