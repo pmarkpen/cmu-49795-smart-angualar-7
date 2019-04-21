@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import StoreItem from './model/store-item';
 import Product from './model/product';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import FetchStoreResponse from './model/fetch-store-response';
 import FetchProductResponse from './model/fetch-product-response';
-import {environment} from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -15,6 +15,8 @@ import {environment} from '../../../environments/environment';
 })
 export class SelectItemComponent implements OnInit {
 
+  @ViewChild('selectItemScroll') private selectItemScrollContainer: ElementRef;
+  numberOfShowingItem: number = 10;
   storeList: StoreItem[];
   productList: Product[];
   selectedStore: StoreItem;
@@ -39,7 +41,7 @@ export class SelectItemComponent implements OnInit {
   fetchProducts(storeId: string) {
     this.productList = [];
     this.http.get(`http://${environment.host}/api/stores/${storeId}`).subscribe((response: FetchProductResponse) => {
-      if(response.result.requests.length >= 1) {
+      if (response.result.requests.length >= 1) {
         response.result.requests[0].products.sort();
         response.result.requests[0].products.forEach((uniqueProductName) => {
           let pItem = new Product();
@@ -61,10 +63,11 @@ export class SelectItemComponent implements OnInit {
   onClickStore(store: StoreItem) {
     this.selectedStore = store;
     this.fetchProducts(store.id);
+    this.numberOfShowingItem = 10;
   }
 
   isStoreClicked(storeItem: StoreItem) {
-    if(this.selectedStore === undefined) {
+    if (this.selectedStore === undefined) {
       return false;
     }
     return this.selectedStore.id === storeItem.id;
@@ -72,5 +75,16 @@ export class SelectItemComponent implements OnInit {
 
   doFilter(value: string) {
     this.filterValue = value;
+    this.numberOfShowingItem = 10;
+    let element = this.selectItemScrollContainer.nativeElement;
+    element.scrollTo(0, 0);
+  }
+
+  onScroll() {
+    let element = this.selectItemScrollContainer.nativeElement
+    let atBottom = element.scrollHeight - element.scrollTop === element.clientHeight
+    if (atBottom) {
+      this.numberOfShowingItem += 10;
+    }
   }
 }

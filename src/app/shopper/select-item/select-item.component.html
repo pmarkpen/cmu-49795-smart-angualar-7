@@ -21,10 +21,10 @@
           <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
        </mat-form-field>
   </div>
-  <div class="col-12 app-select-product-container">
+  <div class="col-12 app-select-product-container" #selectItemScroll (scroll)="onScroll()">
     <div class="row">
       <div class="col-12">
-        <app-select-product *ngFor="let product of productList | myfilter:filterValue" [productName]="product.name" (click)="onClickProduct(product)"></app-select-product>
+        <app-select-product *ngFor="let product of productList | myfilter:filterValue | slice:0:numberOfShowingItem" [productName]="product.name" (click)="onClickProduct(product)"></app-select-product>
       </div>
     </div>
   </div>
