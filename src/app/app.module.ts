@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import * as firebase from 'firebase';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { CommonModule } from '@angular/common';
 import { AuthGuardService } from './auth-guard.service';
+import { RequestInterceptor } from './request-interceptor.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/pre-login/login', pathMatch: 'full' },
@@ -51,7 +52,9 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     ),
   ],
-  providers: [StoreInformationService, AuthGuardService],
+  providers: [StoreInformationService, AuthGuardService, 
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -63,8 +63,6 @@ export class LoginComponent implements OnInit {
           alert(err.error.errors.reduce((previousValue, currentValue) => {
             return `${previousValue}, ${currentValue}`
           }));
-        } else {
-          alert("Connection Error: the server is offline");
         }
       });
     } else {
@@ -81,9 +79,7 @@ export class LoginComponent implements OnInit {
           alert(err.error.errors.reduce((previousValue, currentValue) => {
             return `${previousValue}, ${currentValue}`
           }));
-        } else {
-          alert("Connection Error: the server is offline");
-        }
+        } 
       });
     }
   }
