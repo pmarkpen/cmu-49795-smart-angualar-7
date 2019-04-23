@@ -24,7 +24,7 @@ export class RequestInterceptor implements HttpInterceptor {
         return event;
       }),
       catchError((error: HttpErrorResponse) => {
-        if (error.error.errors == undefined) {
+        if (error.error.errors == undefined && error.status === 0) {
           alert("Connection Error: the server is offline");
         }
         return throwError(error);
