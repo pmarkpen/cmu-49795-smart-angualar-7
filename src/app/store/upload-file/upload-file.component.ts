@@ -33,20 +33,20 @@ export class UploadFileComponent implements OnInit {
   upload() {
     this.uploadFileToFirebase().subscribe((fileURL: string) => {
       this.importFileServiceService.import(fileURL, this.storeInformationService.storeId).subscribe(() => {
-
       });
-      
-      let promise = setInterval(() => {
-        this.importFileServiceService.getImportStatus(this.storeInformationService.storeId).subscribe((serverResponse: ImportFileStatusResponse) => {
-          this.status = serverResponse.result.requests[0].status;
-          this.statusCode = serverResponse.result.requests[0].code;
 
-          if(serverResponse.result.requests[0].code === 6) {
-            clearInterval(promise);
-          }
-        });
-      }, 100);
-     
+      setTimeout(() => {
+        let promise = setInterval(() => {
+          this.importFileServiceService.getImportStatus(this.storeInformationService.storeId).subscribe((serverResponse: ImportFileStatusResponse) => {
+            this.status = serverResponse.result.requests[0].status;
+            this.statusCode = serverResponse.result.requests[0].code;
+
+            if (serverResponse.result.requests[0].code === 6) {
+              clearInterval(promise);
+            }
+          });
+        }, 100);
+      }, 5000)
     });
   }
 
@@ -133,7 +133,7 @@ export class UploadFileComponent implements OnInit {
   }
 
   isUploadBtnDisabled() {
-   return this.isImporting();
+    return this.isImporting();
   }
 
   isImporting() {
