@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ShopperInformationService } from '../../shopper-information.service';
-import { StoreInformationService } from '../../store-information.service';
-import { AuthGuardService } from '../../auth-guard.service';
+import { ShopperInformationService } from '../../shared-service/shopper-information.service';
+import { StoreInformationService } from '../../shared-service/store-information.service';
+import { AuthGuardService } from '../../shared-service/auth-guard.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
@@ -46,6 +46,8 @@ export class LoginComponent implements OnInit {
       alert("Please insert password");
       return
     }
+
+    this.storeInformationService.testIdentity = "eiei";
 
     sessionStorage.clear();
 

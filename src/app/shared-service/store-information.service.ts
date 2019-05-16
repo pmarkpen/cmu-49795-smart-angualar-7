@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class StoreInformationService {
 
+  testIdentity: string;
   isStore: boolean;
   storeId: string;
   storeName: string;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreInformationService } from '../../store-information.service';
-import { ShopperInformationService } from '../../shopper-information.service';
+import { StoreInformationService } from '../../shared-service/store-information.service';
+import { ShopperInformationService } from '../../shared-service/shopper-information.service';
 
 @Component({
   selector: 'app-after-login',

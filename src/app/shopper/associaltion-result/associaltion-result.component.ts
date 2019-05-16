@@ -3,7 +3,7 @@ import AssociatedProductItem from './model/associated-product-item';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import AssociatedProductItemResponse from './model/associated-product-item-response';
-import { ShopperInformationService } from '../../shopper-information.service';
+import { ShopperInformationService } from '../../shared-service/shopper-information.service';
 import {environment} from '../../../environments/environment';
 
 @Component({

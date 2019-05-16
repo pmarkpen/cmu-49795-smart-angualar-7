@@ -14,14 +14,15 @@ import { SelectProductComponent } from './shopper/select-item/select-product/sel
 import { AssocialtionResultComponent } from './shopper/associaltion-result/associaltion-result.component';
 import { UploadFileComponent } from './store/upload-file/upload-file.component';
 import { StoreAssociationResultComponent } from './store/store-association-result/store-association-result.component';
-import { StoreInformationService } from './store-information.service';
+import { StoreInformationService } from './shared-service/store-information.service';
 import { MyFilterPipe } from './filter';
 import { FormsModule } from '@angular/forms';
 import * as firebase from 'firebase';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { CommonModule } from '@angular/common';
-import { AuthGuardService } from './auth-guard.service';
+import { AuthGuardService } from './shared-service/auth-guard.service';
 import { RequestInterceptor } from './request-interceptor.service';
+import { SharedServiceModule } from './shared-service/shared-service.module';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/pre-login/login', pathMatch: 'full' },
@@ -48,11 +49,11 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      appRoutes
     ),
+    SharedServiceModule.forRoot()
   ],
-  providers: [StoreInformationService, AuthGuardService, 
+  providers: [ 
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
     ],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShopperInformationService } from '../../shopper-information.service';
+import { ShopperInformationService } from '../../shared-service/shopper-information.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {environment} from '../../../environments/environment';

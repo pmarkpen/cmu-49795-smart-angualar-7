@@ -3,7 +3,7 @@ import { S3FileUploaderService } from './s3-file-uploader.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ImportFileServiceService, ImportFileStatusResponse } from './import-file-service.service';
-import { StoreInformationService } from '../../store-information.service';
+import { StoreInformationService } from '../../shared-service/store-information.service';
 
 function getWindow(): any {
   return window;

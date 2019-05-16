@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { HttpClient } from '@angular/common/http'
 import { Article } from '../model/article';
-import { StoreInformationService } from '../../store-information.service';
+import { StoreInformationService } from '../../shared-service/store-information.service';
 import {environment} from '../../../environments/environment';
 
 @Component({

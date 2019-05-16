@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import Product from '../../shopper/select-item/model/product';
 import FetchProductResponse from '../../shopper/select-item/model/fetch-product-response';
 import { environment } from '../../../environments/environment';
-import { StoreInformationService } from '../../store-information.service';
+import { StoreInformationService } from '../../shared-service/store-information.service';
 import Chart from 'chart.js';
 import { Observable } from 'rxjs';
 import { MatDatepickerInputEvent } from '@angular/material';
