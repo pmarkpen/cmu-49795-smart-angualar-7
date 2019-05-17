@@ -5,6 +5,7 @@ import { StoreInformationService } from '../../shared-service/store-information.
 import { AuthGuardService } from '../../shared-service/auth-guard.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,10 @@ import { environment } from '../../../environments/environment';
 })
 export class LoginComponent implements OnInit {
 
+  loginForm: FormGroup;
+
   isStore: boolean;
-  id: string;
-  password: string;
+  isLoginClicked: boolean;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private shopperInformationService: ShopperInformationService,
@@ -30,22 +32,24 @@ export class LoginComponent implements OnInit {
       const paramUrl = this.router.parseUrl(this.router.url);
       this.isStore = paramUrl.queryParams.store === undefined ? false : true;
     });
+    this.loginForm = new FormGroup({
+      email: new FormControl('', Validators.required),
+      password: new FormControl(''),
+    });
+    this.loginForm.patchValue({ "email": "" });
   }
+
+  get email() { return this.loginForm.get('email'); }
+
+  get password() { return this.loginForm.get('password'); }
 
   get idDescription(): string {
     return this.isStore ? 'StoreId' : 'UserId';
   }
 
   onClickLogin() {
-    if (this.id === "" || this.id === undefined) {
-      alert("Please insert id");
-      return
-    }
-
-    if (this.password === "" || this.password === undefined) {
-      alert("Please insert password");
-      return
-    }
+    this.isLoginClicked = true;
+    if (!this.loginForm.valid) { return; }
 
     this.storeInformationService.testIdentity = "eiei";
 
@@ -53,8 +57,8 @@ export class LoginComponent implements OnInit {
 
     if (this.isStore) {
       this.http.post(`http://${environment.host}/signin-store`, {
-        storeID: this.id,
-        password: this.password
+        storeID: this.loginForm.value["email"],
+        password: this.loginForm.value["password"]
       }).subscribe((response: LogInStoreResponse) => {
         this.storeInformationService.setInformation(true, response.result.storeID, response.result.storeName);
         this.shopperInformationService.update();
@@ -69,8 +73,8 @@ export class LoginComponent implements OnInit {
       });
     } else {
       this.http.post(`http://${environment.host}/signin-shopper`, {
-        shopperID: this.id,
-        password: this.password
+        shopperID: this.loginForm.value["email"],
+        password: this.loginForm.value["password"]
       }).subscribe((response: LogInShopperResponse) => {
         this.shopperInformationService.setInformation(true, response.result.shopperID, response.result.firstName, response.result.lastName);
         this.storeInformationService.update();
@@ -81,7 +85,7 @@ export class LoginComponent implements OnInit {
           alert(err.error.errors.reduce((previousValue, currentValue) => {
             return `${previousValue}, ${currentValue}`
           }));
-        } 
+        }
       });
     }
   }

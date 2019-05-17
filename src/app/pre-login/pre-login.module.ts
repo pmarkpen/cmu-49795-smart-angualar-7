@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PreLoginComponent } from './pre-login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
 import { SignUpShopperComponent } from './sign-up-shopper/sign-up-shopper.component';
@@ -27,6 +27,7 @@ const appRoutes: Routes = [{
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    ReactiveFormsModule
   ]
 })
 export class PreLoginModule { }

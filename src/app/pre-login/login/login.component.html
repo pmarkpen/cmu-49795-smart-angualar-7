@@ -6,7 +6,7 @@
           Welcome to
         </span>
         <span class="login100-form-title p-b-26 logo">
-          sMart 
+          sMart
         </span>
         <span class="login100-form-title p-b-26 type">
           ({{mode}})
@@ -14,26 +14,33 @@
         <span class="login100-form-title p-b-48">
           <i class="zmdi zmdi-font"></i>
         </span>
-
-        <div class="wrap-input100 validate-input">
-          <input class="input100" type="text" name="email" [(ngModel)]="id" placeholder="{{idDescription}}">
-        </div>
-
-        <div class="wrap-input100 validate-input">
-          <span class="btn-show-pass">
-            <i class="zmdi zmdi-eye"></i>
-          </span>
-          <input class="input100" type="password" name="pass" [(ngModel)]="password">
-          <span class="focus-input100" data-placeholder="Password"></span>
-        </div>
-        <div class="container-login100-form-btn">
-          <div class="wrap-login100-form-btn">
-            <div class="login100-form-bgbtn"></div>
-            <button class="login100-form-btn" (click)="onClickLogin()">
-              Login
-            </button>
+        <form [formGroup]="loginForm">
+          <div class="wrap-input100 validate-input">
+            <input class="input100" type="text" name="email" formControlName="email" placeholder="{{idDescription}}">
+            <span class="col-sm-offset-3 col-sm-9 help-block" *ngIf="email.invalid && (isLoginClicked)">
+              Email must be entered.
+            </span>
           </div>
-        </div>
+
+          <div class="wrap-input100 validate-input">
+            <span class="btn-show-pass">
+              <i class="zmdi zmdi-eye"></i>
+            </span>
+            <input class="input100" type="password" name="pass" formControlName="password" required>
+            <span class="focus-input100" data-placeholder="Password"></span>
+            <span class="col-sm-offset-3 col-sm-9 help-block" *ngIf="password.invalid && (isLoginClicked)">
+              Password must be entered.
+            </span>
+          </div>
+          <div class="container-login100-form-btn">
+            <div class="wrap-login100-form-btn">
+              <div class="login100-form-bgbtn"></div>
+              <button class="login100-form-btn" type="submit" (click)="onClickLogin(loginForm)">
+                Login
+              </button>
+            </div>
+          </div>
+        </form>
 
         <div class="text-center p-t-115">
           <span class="txt1">
@@ -51,13 +58,13 @@
           </p>
         </div>
         <div class="text-center p-t-10">
-            <span class="txt1">
-              Not {{mode}}?
-            </span>
-            <a class="txt2" href="{{getOppositeURL()}}">
-              Log in as {{oppositeMode}}
-            </a>
-          </div>
+          <span class="txt1">
+            Not {{mode}}?
+          </span>
+          <a class="txt2" href="{{getOppositeURL()}}">
+            Log in as {{oppositeMode}}
+          </a>
+        </div>
       </div>
     </div>
   </div>
