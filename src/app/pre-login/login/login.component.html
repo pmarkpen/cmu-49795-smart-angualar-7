@@ -26,7 +26,7 @@
             <span class="btn-show-pass">
               <i class="zmdi zmdi-eye"></i>
             </span>
-            <input class="input100" type="password" name="pass" formControlName="password" required>
+            <input class="input100" type="password" name="pass" formControlName="password" >
             <span class="focus-input100" data-placeholder="Password"></span>
             <span class="col-sm-offset-3 col-sm-9 help-block" *ngIf="password.invalid && (isLoginClicked)">
               Password must be entered.
@@ -35,7 +35,7 @@
           <div class="container-login100-form-btn">
             <div class="wrap-login100-form-btn">
               <div class="login100-form-bgbtn"></div>
-              <button class="login100-form-btn" type="submit" (click)="onClickLogin(loginForm)">
+              <button class="login100-form-btn" type="submit" (click)="onClickLogin()">
                 Login
               </button>
             </div>

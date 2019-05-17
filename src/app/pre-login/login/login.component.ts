@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
       this.isStore = paramUrl.queryParams.store === undefined ? false : true;
     });
     this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl(''),
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
     });
     this.loginForm.patchValue({ "email": "" });
   }
