@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
   onClickLogin() {
     this.isLoginClicked = true;
     if (!this.loginForm.valid) { return; }
-    
+
     sessionStorage.clear();
     let {email, password} = this.loginForm.value;
     if (this.isStore) {
