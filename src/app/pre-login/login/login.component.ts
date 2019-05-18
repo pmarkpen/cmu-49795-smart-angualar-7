@@ -6,6 +6,7 @@ import { AuthGuardService } from '../../shared-service/auth-guard.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private shopperInformationService: ShopperInformationService,
     private storeInformationService: StoreInformationService,
     private authGuardService: AuthGuardService,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private loginService: LoginService) {
 
   }
 
@@ -50,16 +52,11 @@ export class LoginComponent implements OnInit {
   onClickLogin() {
     this.isLoginClicked = true;
     if (!this.loginForm.valid) { return; }
-
-    this.storeInformationService.testIdentity = "eiei";
-
+    
     sessionStorage.clear();
-
+    let {email, password} = this.loginForm.value;
     if (this.isStore) {
-      this.http.post(`http://${environment.host}/signin-store`, {
-        storeID: this.loginForm.value["email"],
-        password: this.loginForm.value["password"]
-      }).subscribe((response: LogInStoreResponse) => {
+      this.loginService.loginAsStore(email, password).subscribe((response: LogInStoreResponse) => {
         this.storeInformationService.setInformation(true, response.result.storeID, response.result.storeName);
         this.shopperInformationService.update();
         this.authGuardService.setLogIn();

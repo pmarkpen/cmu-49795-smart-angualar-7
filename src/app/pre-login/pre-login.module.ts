@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
 import { SignUpShopperComponent } from './sign-up-shopper/sign-up-shopper.component';
+import { LoginService } from './login/login.service';
 
 const appRoutes: Routes = [{
   path: '', component: PreLoginComponent, children: [
@@ -28,6 +29,7 @@ const appRoutes: Routes = [{
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers: [LoginService]
 })
 export class PreLoginModule { }
