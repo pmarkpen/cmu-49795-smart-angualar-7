@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ExampleBehavioralSubjectService } from './shared-service/example-behavioral-subject.service';
+import { Subscriber } from 'rxjs';
 
 function getWindow(): any {
   return window;
@@ -12,7 +14,7 @@ function getWindow(): any {
 export class AppComponent {
   title = 'smartFrontEnd';
 
-  constructor() {
+  constructor(private exampleBehavioralSubjectService: ExampleBehavioralSubjectService) {
     let window = getWindow();
     let config = {
       apiKey: "AIzaSyAAyiT1zLOnB3p-xqY7TkewcfE3bA2b9vU",
@@ -23,5 +25,11 @@ export class AppComponent {
       messagingSenderId: "691879457930"
     };
     window.firebase.initializeApp(config);
+  }
+
+  testBehaviorSubject() {
+    let subscriber = new Subscriber((value) => {console.log(`Got ${value}`)});
+    let subscription = this.exampleBehavioralSubjectService.subscribe(subscriber);
+    subscription.unsubscribe();
   }
 }
